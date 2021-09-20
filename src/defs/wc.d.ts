@@ -10,5 +10,8 @@ declare namespace JSX {
     'my-element': {
       name?: string;
     };
+    'gradient-text': {
+      text?: string;
+    };
   }
 }

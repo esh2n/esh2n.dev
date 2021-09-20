@@ -14,6 +14,7 @@
     "@emotion/styled": "^11",
     "@lit-labs/react": "^1.0.0-rc.4",
     "@material/mwc-button": "^0.23.0",
+    "@okra-ui/gradient-text": "^0.0.4",
     "framer-motion": "^4",
     "lit": "^2.0.0-rc.4",
     "next": "11.1.2",

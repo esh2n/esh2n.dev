@@ -6,6 +6,7 @@ specifiers:
   '@emotion/styled': ^11
   '@lit-labs/react': ^1.0.0-rc.4
   '@material/mwc-button': ^0.23.0
+  '@okra-ui/gradient-text': ^0.0.4
   '@types/node': ^16.9.2
   '@types/react': ^17.0.21
   '@types/react-dom': ^17.0.9
@@ -33,6 +34,7 @@ dependencies:
   '@emotion/styled': 11.3.0_aea42b1993894dd6b24ec4eb2c8dca6f
   '@lit-labs/react': 1.0.0-rc.4
   '@material/mwc-button': 0.23.0
+  '@okra-ui/gradient-text': 0.0.4
   framer-motion: 4.1.17_react-dom@17.0.2+react@17.0.2
   lit: 2.0.0-rc.4
   next: 11.1.2_28202b60a2f1ff1efe2350faab6bb389
@@ -1304,6 +1306,12 @@ packages:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.13.0
     dev: true
+
+  /@okra-ui/gradient-text/0.0.4:
+    resolution: {integrity: sha512-STgiolLF2Mua4nYvjjZ0q9gvD4LdGiKPkU4OxigfxpBr1XZ3y8tZsDDybwwpzGWTlzFdO1z444aBmract/ToZQ==}
+    dependencies:
+      lit: 2.0.0-rc.4
+    dev: false
 
   /@popperjs/core/2.4.4:
     resolution: {integrity: sha512-1oO6+dN5kdIA3sKPZhRGJTfGVP4SWV6KqlMOwry4J3HfyD68sl/3KmG7DeYUzvN+RbhXDnv/D8vNNB8168tAMg==}
