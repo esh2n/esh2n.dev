@@ -13,5 +13,8 @@ declare namespace JSX {
     'gradient-text': {
       text?: string;
     };
+    'string-to-html': {
+      stringifiedHTML?: string;
+    };
   }
 }

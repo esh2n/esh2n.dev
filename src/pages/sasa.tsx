@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { LitElement, html } from 'lit';
 import { NextPage } from 'next';
 import Head from 'next/head';
 
