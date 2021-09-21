@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import ErrorPage from 'next/error';
 import { getPostBySlug, getAllPosts } from '../../lib/getPosts';
-import Head from 'next/head';
+import NextHead from 'next/head';
 import markdownToHtml from '../../lib/markdownToHtml';
 import PostBody from '@components/post-body';
 import { Post as PostModel } from 'types';
@@ -22,10 +22,11 @@ export default function Post({ post, ogImageUrl }: Props) {
         <>Loading…</>
       ) : (
         <>
-          <Head>
+          <NextHead>
             <title>{post.title} | esh2n.dev</title>
             <meta property="og:image" content={ogImageUrl} />
-          </Head>
+            <meta name="twitter:image" content={ogImageUrl} />
+          </NextHead>
           <div>
             <h1>{post.title}</h1>
             <p>createdAt: {post.date}</p>
@@ -68,13 +69,7 @@ export async function getStaticPaths() {
   const posts = getAllPosts(['slug']);
 
   return {
-    paths: posts.map((post) => {
-      return {
-        params: {
-          slug: post.slug,
-        },
-      };
-    }),
+    paths: posts.map((post) => `/posts/${post.slug}`),
     fallback: false,
   };
 }
