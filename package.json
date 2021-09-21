@@ -14,13 +14,17 @@
     "@emotion/styled": "^11",
     "@lit-labs/react": "^1.0.0-rc.4",
     "@material/mwc-button": "^0.23.0",
-    "@okra-ui/gradient-text": "^0.0.4",
+    "@okra-ui/gradient-text": "^0.0.6",
+    "@okra-ui/string-to-dom": "^0.0.6",
     "framer-motion": "^4",
+    "gray-matter": "^4.0.3",
     "lit": "^2.0.0-rc.4",
     "next": "11.1.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "recoil": "^0.4.1"
+    "recoil": "^0.4.1",
+    "remark": "^14.0.1",
+    "remark-html": "^14.0.1"
   },
   "devDependencies": {
     "@types/node": "^16.9.2",
