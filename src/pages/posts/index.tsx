@@ -14,12 +14,12 @@ const Posts = ({ allPosts }: Props) => {
     import('@okra-ui/gradient-text');
   }, []);
   return (
-    <div>
+    <>
       <gradient-text text="キラキラブログ一覧" />
       {morePosts.length > 0 && (
         <div>
-          {allPosts.map((post) => (
-            <div>
+          {allPosts.map((post, index) => (
+            <div key={index}>
               <Link as={`/posts/${post.slug}`} href="/posts/[slug]">
                 <a className="hover:underline">{post.title}</a>
               </Link>
@@ -27,7 +27,7 @@ const Posts = ({ allPosts }: Props) => {
           ))}
         </div>
       )}
-    </div>
+    </>
   );
 };
 
