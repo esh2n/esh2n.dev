@@ -6,7 +6,7 @@ interface Props {
 
 const PostBody = ({ html }: Props) => {
   useEffect(() => {
-    import('@okra-ui/string-to-dom');
+    import('@okra-ui/string-to-html');
   }, []);
   return (
     <>
