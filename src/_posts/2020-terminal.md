@@ -14,6 +14,7 @@ tags:
 categories:
   - DEV
 color: '#0868F4'
+emoji: '🙅'
 ---
 
 # はじめに

@@ -1,5 +1,5 @@
 {
-  "name": "nextjs-template",
+  "name": "esh2n.dev",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -15,7 +15,7 @@
     "@lit-labs/react": "^1.0.0-rc.4",
     "@material/mwc-button": "^0.23.0",
     "@okra-ui/gradient-text": "^0.0.10",
-    "@okra-ui/string-to-html": "^0.0.10",
+    "@okra-ui/string-to-html": "^0.0.47",
     "framer-motion": "^4",
     "gray-matter": "^4.0.3",
     "next": "11.1.2",

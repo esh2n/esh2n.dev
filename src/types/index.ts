@@ -9,6 +9,7 @@ export interface Post {
   tags?: string[];
   category?: string;
   color?: string;
+  emoji?: string;
 }
 
 export interface Author {
