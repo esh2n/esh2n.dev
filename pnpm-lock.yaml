@@ -7,7 +7,7 @@ specifiers:
   '@lit-labs/react': ^1.0.0-rc.4
   '@material/mwc-button': ^0.23.0
   '@okra-ui/gradient-text': ^0.0.10
-  '@okra-ui/string-to-html': ^0.0.10
+  '@okra-ui/string-to-html': ^0.0.47
   '@types/node': ^16.9.2
   '@types/react': ^17.0.21
   '@types/react-dom': ^17.0.9
@@ -38,7 +38,7 @@ dependencies:
   '@lit-labs/react': 1.0.0
   '@material/mwc-button': 0.23.0
   '@okra-ui/gradient-text': 0.0.10
-  '@okra-ui/string-to-html': 0.0.10
+  '@okra-ui/string-to-html': 0.0.47
   framer-motion: 4.1.17_react-dom@17.0.2+react@17.0.2
   gray-matter: 4.0.3
   next: 11.1.2_b9a0da2df003d9e3ba0486fbfc9afb9a
@@ -1326,9 +1326,10 @@ packages:
       tslib: 2.3.1
     dev: false
 
-  /@okra-ui/string-to-html/0.0.10:
-    resolution: {integrity: sha512-sabCZMeimAlFeCFFATTUJnGF1s1MNqKw7/dyzL1dlR9qcpsRhpYqSP5lFklR1A+ZSZdAB3q9vRkzHdwk5mOJ3w==}
+  /@okra-ui/string-to-html/0.0.47:
+    resolution: {integrity: sha512-HZnNbiD++W2YDxZe6oEoUNwJEJ+0E9283aCh6x73iGGhN+IYPp7R8MXibLORkY48lV8SUYlI/8VN58+CnDzWnQ==}
     dependencies:
+      highlight.js: 11.2.0
       lit: 2.0.0
       tslib: 2.3.1
     dev: false
@@ -2947,6 +2948,11 @@ packages:
 
   /hey-listen/1.0.8:
     resolution: {integrity: sha512-COpmrF2NOg4TBWUJ5UVyaCU2A88wEMkUPK4hNqyCkqHbxT92BbvfjoSozkAIIm6XhicGlJHhFdullInrdhwU8Q==}
+    dev: false
+
+  /highlight.js/11.2.0:
+    resolution: {integrity: sha512-JOySjtOEcyG8s4MLR2MNbLUyaXqUunmSnL2kdV/KuGJOmHZuAR5xC54Ko7goAXBWNhf09Vy3B+U7vR62UZ/0iw==}
+    engines: {node: '>=12.0.0'}
     dev: false
 
   /hmac-drbg/1.0.1:

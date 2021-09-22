@@ -14,6 +14,7 @@ tags:
 categories:
   - DEV
 color: '#0868F4'
+emoji: '🙅'
 ---
 
 こんにちは、都内スタートアップにて、Flutter x Firebase を用いて
@@ -227,6 +228,10 @@ Flutter 側ではネイティブコードを`MethodChannel`から invoke しま�
 </div>
 
 最後に Functions 側で、`Channel ID`を指定します。
+
+- sasa
+- fadfas
+- dsaf
 
 ```ts
 const options = {

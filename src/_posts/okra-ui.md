@@ -13,6 +13,7 @@ tags:
 categories:
   - DEV
 color: '#0868F4'
+emoji: '🙅'
 ---
 
 今まで使っていた[ブログサイト](esh2n.com)に飽きてきたので新しく作りなおしています。
