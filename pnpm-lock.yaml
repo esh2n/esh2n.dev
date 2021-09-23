@@ -4,6 +4,10 @@ specifiers:
   '@chakra-ui/react': ^1.6.7
   '@emotion/react': ^11
   '@emotion/styled': ^11
+  '@fortawesome/fontawesome-svg-core': ^1.2.36
+  '@fortawesome/free-brands-svg-icons': ^5.15.4
+  '@fortawesome/free-solid-svg-icons': ^5.15.4
+  '@fortawesome/react-fontawesome': ^0.1.15
   '@lit-labs/react': ^1.0.0-rc.4
   '@material/mwc-button': ^0.23.0
   '@okra-ui/gradient-text': ^0.0.10
@@ -35,6 +39,10 @@ dependencies:
   '@chakra-ui/react': 1.6.8_3a3cad6e6afe74ebae0966f40538c4c9
   '@emotion/react': 11.4.1_4726f45725de6dc318b8ee59ad7f5865
   '@emotion/styled': 11.3.0_405546ec9352a10d6e7e4653f1e4bc60
+  '@fortawesome/fontawesome-svg-core': 1.2.36
+  '@fortawesome/free-brands-svg-icons': 5.15.4
+  '@fortawesome/free-solid-svg-icons': 5.15.4
+  '@fortawesome/react-fontawesome': 0.1.15_f515edce028694561ceb456e3dba224c
   '@lit-labs/react': 1.0.0
   '@material/mwc-button': 0.23.0
   '@okra-ui/gradient-text': 0.0.10
@@ -1076,6 +1084,47 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /@fortawesome/fontawesome-common-types/0.2.36:
+    resolution: {integrity: sha512-a/7BiSgobHAgBWeN7N0w+lAhInrGxksn13uK7231n2m8EDPE3BMCl9NZLTGrj9ZXfCmC6LM0QLqXidIizVQ6yg==}
+    engines: {node: '>=6'}
+    requiresBuild: true
+    dev: false
+
+  /@fortawesome/fontawesome-svg-core/1.2.36:
+    resolution: {integrity: sha512-YUcsLQKYb6DmaJjIHdDWpBIGCcyE/W+p/LMGvjQem55Mm2XWVAP5kWTMKWLv9lwpCVjpLxPyOMOyUocP1GxrtA==}
+    engines: {node: '>=6'}
+    requiresBuild: true
+    dependencies:
+      '@fortawesome/fontawesome-common-types': 0.2.36
+    dev: false
+
+  /@fortawesome/free-brands-svg-icons/5.15.4:
+    resolution: {integrity: sha512-f1witbwycL9cTENJegcmcZRYyawAFbm8+c6IirLmwbbpqz46wyjbQYLuxOc7weXFXfB7QR8/Vd2u5R3q6JYD9g==}
+    engines: {node: '>=6'}
+    requiresBuild: true
+    dependencies:
+      '@fortawesome/fontawesome-common-types': 0.2.36
+    dev: false
+
+  /@fortawesome/free-solid-svg-icons/5.15.4:
+    resolution: {integrity: sha512-JLmQfz6tdtwxoihXLg6lT78BorrFyCf59SAwBM6qV/0zXyVeDygJVb3fk+j5Qat+Yvcxp1buLTY5iDh1ZSAQ8w==}
+    engines: {node: '>=6'}
+    requiresBuild: true
+    dependencies:
+      '@fortawesome/fontawesome-common-types': 0.2.36
+    dev: false
+
+  /@fortawesome/react-fontawesome/0.1.15_f515edce028694561ceb456e3dba224c:
+    resolution: {integrity: sha512-/HFHdcoLESxxMkqZAcZ6RXDJ69pVApwdwRos/B2kiMWxDSAX2dFK8Er2/+rG+RsrzWB/dsAyjefLmemgmfE18g==}
+    peerDependencies:
+      '@fortawesome/fontawesome-svg-core': ^1.2.32
+      react: '>=16.x'
+    dependencies:
+      '@fortawesome/fontawesome-svg-core': 1.2.36
+      prop-types: 15.7.2
+      react: 17.0.2
+    dev: false
 
   /@hapi/accept/5.0.2:
     resolution: {integrity: sha512-CmzBx/bXUR8451fnZRuZAJRlzgm0Jgu5dltTX/bszmR2lheb9BpyN47Q1RbaGTsvFzn0PXAEs+lXDKfshccYZw==}
