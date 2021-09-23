@@ -4,8 +4,8 @@ excerpt: '今回は、`FCM(Firebase Cloud Messaging)`のプッシュ通知を行
 coverImage: 'https://user-images.githubusercontent.com/55518345/98099391-d9255500-1ed2-11eb-9056-5d4b813c7067.png'
 date: '2020-11-4'
 author:
-  name: Shunya Endo
-  picture: '/assets/blog/authors/joe.jpeg'
+  name: esh2n
+  picture: ''
 tags:
   - Flutter
   - Firebase

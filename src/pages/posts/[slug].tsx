@@ -8,19 +8,33 @@ import { Post as PostModel } from 'types';
 import generateOgImageUrl from 'lib/generateOgImageUrl';
 import styled from '@emotion/styled';
 import PostTitle from '../../components/post-title';
+import SideProfile from '../../components/side-profile';
 
 interface Props {
   post: PostModel;
   ogImageUrl: string;
 }
-const StyledWrapper = styled.article`
-  @media (min-width: 992px) {
-    padding: 25px 40px;
-  }
+
+const StyledGridWrapper = styled.article`
+  display: grid;
+  justify-content: center;
+  padding: 25px;
+  row-gap: 36px;
+  column-gap: 36px;
+  grid-template-areas:
+    'post-title'
+    'post-body';
+  grid-template-columns: minmax(200px, 790px);
+
   @media (min-width: 768px) {
     padding: 25px 40px;
   }
-  padding: 25px;
+  @media (min-width: 992px) {
+    grid-template-columns: minmax(200px, 790px) 300px;
+    grid-template-areas:
+      'post-title post-title'
+      'post-body side-profile';
+  }
 `;
 export default function Post({ post, ogImageUrl }: Props) {
   const router = useRouter();
@@ -38,25 +52,16 @@ export default function Post({ post, ogImageUrl }: Props) {
             <meta property="og:image" content={ogImageUrl} />
             <meta name="twitter:image" content={ogImageUrl} />
           </NextHead>
-          <StyledWrapper>
+          <StyledGridWrapper>
             <PostTitle title={post.title} date={post.date} emoji={post.emoji} />
-            <Spacer />
-            {/* <div>
-              <h1>{post.title}</h1>
-              <p>createdAt: {post.date}</p>
-              <p>author: {post.author.name}</p>
-            </div> */}
-            <PostBody html={post.content} />
-          </StyledWrapper>
+            <SideProfile />
+            <PostBody html={post.content} coverImage={post.coverImage} />
+          </StyledGridWrapper>
         </>
       )}
     </div>
   );
 }
-
-const Spacer = styled.div`
-  padding: 24px;
-`;
 
 export async function getStaticProps({ params }) {
   const post = getPostBySlug(params.slug, [
