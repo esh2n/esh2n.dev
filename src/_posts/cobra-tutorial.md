@@ -1,11 +1,11 @@
 ---
-title: 'Cobra で CLI ツールを作ろう'
-excerpt: '良く使う CLI コマンドをエイリアス等に登録するのも良いですが、CLI ツールとしてきちんとコマンドを自作したいと思い作りました。'
+title: 'CobraでCLIツールを作ろう'
+date: '2020-09-07'
+excerpt: '良く使う CLI コマンドをエイリアス等に登録するのも良いですが、CLI ツールとしてきちんとコマンドを自作したいと思い作りました。sample-dir という名前のツールを作ります。以下のコマンドで雛形を作成します'
 coverImage: 'https://user-images.githubusercontent.com/55518345/93424281-b626ed80-f8f2-11ea-8904-8b173609cf6c.png'
-date: '2020-9-17'
 author:
-name: esh2n
-picture: ''
+  name: 'esh2n'
+  picture: 'https://avatars.githubusercontent.com/u/55518345?v=4'
 tags:
   - Golang
   - CLI
