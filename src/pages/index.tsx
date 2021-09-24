@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import styles from 'styles/Home.module.scss';
+import { useRouter } from 'next/router';
 
 const Home: NextPage = () => {
+  const router = useRouter();
+  useEffect(() => {
+    router.push('/posts');
+  });
   return (
     <div className={styles.container}>
       <Head>

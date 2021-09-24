@@ -11,7 +11,7 @@ const StyledPostWrapper = styled.div`
   background-color: #f5f5f5;
   font-weight: 600;
   border-radius: 20px;
-  height: 332px;
+  /* height: 232px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -20,6 +20,7 @@ const StyledPostWrapper = styled.div`
   padding: 25px;
   @media (min-width: 768px) {
     padding: 25px 40px;
+    height: 332px;
   }
   picture {
     font-size: 76px;

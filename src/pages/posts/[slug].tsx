@@ -19,8 +19,7 @@ const StyledGridWrapper = styled.article`
   display: grid;
   justify-content: center;
   padding: 25px;
-  row-gap: 36px;
-  column-gap: 36px;
+  row-gap: 26px;
   grid-template-areas:
     'post-title'
     'post-body';
@@ -34,6 +33,8 @@ const StyledGridWrapper = styled.article`
     grid-template-areas:
       'post-title post-title'
       'post-body side-profile';
+    row-gap: 36px;
+    column-gap: 36px;
   }
 `;
 export default function Post({ post, ogImageUrl }: Props) {
