@@ -33,3 +33,30 @@ SSG で事足りるなら Pagic もありかなと思っていましたが結局
 今回は Web Components ベースでライブラリを作ることにしました。
 Svelte と悩みましたが、以前 Lit element を使ったことがあったことと Web Components のネックである SSR のしにくさも改善されているようでしたので。
 Lit element を使っている UI ライブラリで[material-components/material-web](https://github.com/material-components/material-web)がとても参考になりました。
+
+## 作ったもの
+
+一応本来の目的である「ブログサイトを作る」ということに沿って、マークダウンから生成した HTML テキストデータをプロップスとして渡すと code 要素などにスタイリングしてくれていい感じに返してくれるコンポーネントを作りました。
+
+内部では highlight.js をつかっており、テーマや対応言語も豊富ではあるものの少しパッケージとしてのサイズが大きいので自前で用意したいところ。
+
+また、h1,h2 あたりを解析して目次を返すコンポーネントやブログカードを生成する機能も今後追加したいです。
+
+## 使いかた (Next.js)
+
+かなり荒削りですが一応使いかたを載せておきます。
+
+```ts
+const PostBody = ({ html, coverImage }: Props) => {
+  useEffect(() => {
+    import('@okra-ui/string-to-html');
+  });
+  return (
+    <StyledPostBodyWrapper>
+      <string-to-html stringifiedHTML={html} />
+    </StyledPostBodyWrapper>
+  );
+};
+```
+
+`stringifiedHTML`に remark をつかってテキスト化した HTML 要素を送るだけです。

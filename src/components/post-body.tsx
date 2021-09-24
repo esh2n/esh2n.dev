@@ -22,7 +22,7 @@ const StyledPostBodyWrapper = styled.article`
 const PostBody = ({ html, coverImage }: Props) => {
   useEffect(() => {
     import('@okra-ui/string-to-html');
-  }, []);
+  });
   return (
     <StyledPostBodyWrapper>
       <div>
