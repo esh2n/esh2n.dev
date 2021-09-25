@@ -34,3 +34,19 @@ export interface Tweet {
   providerUrl: string;
   version: string;
 }
+
+export interface NotionData {
+  cursor: Cursor;
+  recordMap: RecordMap;
+}
+
+interface RecordMap {
+  block: any;
+  space: any;
+  collectionView: any;
+  collection: any;
+}
+
+interface Cursor {
+  stack: any;
+}
