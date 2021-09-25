@@ -1,18 +1,13 @@
-import React from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import styled from '@emotion/styled';
+import Header from '@components/header';
 
-interface MyDocumentInterface {
+interface DocumentInterface {
   url: string;
   title: string;
   description: string;
 }
 
-const StyledBody = styled.body`
-  /* width: 100%; */
-`;
-
-class MyDocument extends Document implements MyDocumentInterface {
+class MyDocument extends Document implements DocumentInterface {
   url = 'https://esh2n-dev.vercel.ap';
   title = 'esh2n.dev';
   description = "esh2n's tech blog";
@@ -32,10 +27,10 @@ class MyDocument extends Document implements MyDocumentInterface {
           <meta name="format-detection" content="telephone=no" />
           <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         </Head>
-        <StyledBody>
+        <>
           <Main />
           <NextScript />
-        </StyledBody>
+        </>
       </Html>
     );
   }

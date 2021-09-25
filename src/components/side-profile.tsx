@@ -45,7 +45,7 @@ const StyledSideWrapper = styled.div`
     color: #595959;
   }
   .light {
-    font-weight: 600;
+    font-weight: 500;
     font-size: 18px;
     color: #595959;
   }
@@ -61,6 +61,7 @@ const StyledSideWrapper = styled.div`
 
 const TwitterIcon = () => <FontAwesomeIcon icon={faTwitter} size="lg" />;
 const GithubIcon = () => <FontAwesomeIcon icon={faGithub} size="lg" />;
+
 const Spacer = styled.div`
   width: 8px;
   height: 6px;

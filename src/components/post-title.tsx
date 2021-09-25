@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import styled from '@emotion/styled';
 interface Props {
   title: string;
@@ -11,7 +10,6 @@ const StyledPostWrapper = styled.div`
   background-color: #f5f5f5;
   font-weight: 600;
   border-radius: 20px;
-  /* height: 232px; */
   display: flex;
   flex-direction: column;
   justify-content: center;

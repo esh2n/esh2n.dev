@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import { getAllPosts } from '../../lib/getPosts';
-import { Post as PostModel } from 'types';
 import Link from 'next/link';
+import { useEffect } from 'react';
+import { Post as PostModel } from 'types';
 import styled from '@emotion/styled';
+import { getAllPosts } from '@lib/markdown/getPosts';
 
 interface Props {
   allPosts: PostModel[];
@@ -16,7 +16,7 @@ const StyledFlexWrapper = styled.div`
   padding: 25px;
   a {
     font-size: 16px;
-    color: #f5f5f5;
+    color: #333333;
   }
 `;
 

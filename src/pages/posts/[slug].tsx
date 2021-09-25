@@ -1,14 +1,16 @@
-import { useRouter } from 'next/router';
 import ErrorPage from 'next/error';
-import { getPostBySlug, getAllPosts } from '../../lib/getPosts';
 import NextHead from 'next/head';
-import markdownToHtml from '../../lib/markdownToHtml';
-import PostBody from '@components/post-body';
 import { Post as PostModel } from 'types';
-import generateOgImageUrl from 'lib/generateOgImageUrl';
+import { useRouter } from 'next/router';
+//
+import { getPostBySlug, getAllPosts } from '@lib/markdown/getPosts';
+import markdownToHtml from '@lib/markdown/markdownToHtml';
+import generateOgImageUrl from '@lib/ogp/generateOgImageUrl';
+//
 import styled from '@emotion/styled';
-import PostTitle from '../../components/post-title';
-import SideProfile from '../../components/side-profile';
+import PostTitle from '@components/post-title';
+import PostBody from '@components/post-body';
+import SideProfile from '@components/side-profile';
 
 interface Props {
   post: PostModel;
@@ -18,13 +20,14 @@ interface Props {
 const StyledGridWrapper = styled.article`
   display: grid;
   justify-content: center;
-  padding: 25px;
   row-gap: 26px;
   grid-template-areas:
     'post-title'
     'post-body';
   grid-template-columns: minmax(200px, 790px);
-
+  @media (min-width: 500px) {
+    padding: 25px;
+  }
   @media (min-width: 768px) {
     padding: 25px 40px;
   }

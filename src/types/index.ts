@@ -20,3 +20,17 @@ export const isAuthor = (params: unknown): params is Author => {
   const author = params as Author;
   return typeof author?.name === 'string' && typeof author?.picture === 'string';
 };
+
+export interface Tweet {
+  url: string;
+  authorName: string;
+  authorUrl: string;
+  html: string;
+  width?: number;
+  height?: number;
+  type: string;
+  cacheAge: string;
+  providerName: string;
+  providerUrl: string;
+  version: string;
+}
