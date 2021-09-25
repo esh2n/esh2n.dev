@@ -27,7 +27,7 @@ export async function getStaticProps({ params: { slug }, preview }) {
         redirect: '/blog',
         preview: false,
       },
-      unstable_revalidate: 5, // wait 5s as ssg
+      revalidate: 5, // wait 5s as ssg
     };
   }
   const postData = await getPageData(post.id);
