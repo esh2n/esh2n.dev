@@ -26,6 +26,7 @@ class MyDocument extends Document implements DocumentInterface {
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="format-detection" content="telephone=no" />
           <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+          <link rel="icon" href="/favicon.ico" />
         </Head>
         <>
           <Main />

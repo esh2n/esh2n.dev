@@ -1,17 +1,8 @@
 import { NextPage } from 'next';
-import Head from 'next/head';
 import styles from 'styles/Home.module.scss';
 
 const Home: NextPage = () => {
-  return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <meta name="description" content="Powered by create next app" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-    </div>
-  );
+  return <div className={styles.container}></div>;
 };
 
 export default Home;
