@@ -3,7 +3,7 @@ import getPageData from '@lib/notion/getPageData';
 import getBlogIndex from '@lib/notion/getBlogIndex';
 import getNotionUsers from '@lib/notion/getNotionUsers';
 import { getBlogLink, getDateStr } from '@lib/blog-helpers';
-import Post from '@components/notion-post';
+import NotionPostBody from '@components/notion-post';
 import styled from '@emotion/styled';
 import { Tweet, NotionPost } from 'types';
 import SideProfile from '@components/side-profile';
@@ -98,14 +98,13 @@ export async function getStaticPaths() {
 }
 
 const RenderPost = ({ post, redirect, preview }: Props) => {
-  const title = post.Page;
+  const title = post.Page ?? '';
   const date = getDateStr(post.Date);
   const emoji = '📝';
   return (
     <StyledGridWrapper>
       <PostTitle title={title} date={date} emoji={emoji} />
-
-      <Post post={post} preview={preview} redirect={redirect} />
+      <NotionPostBody post={post} preview={preview} redirect={redirect} />
       <SideProfile />
     </StyledGridWrapper>
   );

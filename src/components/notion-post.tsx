@@ -232,8 +232,7 @@ const StyledPostBodyWrapper = styled.article`
   }
 `;
 
-const Post = (props: Props) => {
-  const { post, redirect, preview } = props;
+const NotionPostBody = ({ post, redirect, preview }: Props) => {
   const listTypes = new Set(['bulleted_list', 'numbered_list']);
   const router = useRouter();
   const listItems: IListItems = {
@@ -571,4 +570,4 @@ const Post = (props: Props) => {
   );
 };
 
-export default Post;
+export default NotionPostBody;
