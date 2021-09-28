@@ -6,12 +6,13 @@ import { getBlogLink, getDateStr, postIsPublished } from '../../lib/blog-helpers
 import { textBlock } from '../../lib/notion/renderers';
 import getNotionUsers from '../../lib/notion/getNotionUsers';
 import getBlogIndex from '../../lib/notion/getBlogIndex';
+import { NotionPosts } from 'types';
 
 export async function getStaticProps({ preview }) {
   const postsTable = await getBlogIndex();
 
   const authorsToGet: Set<string> = new Set();
-  const posts: any[] = Object.keys(postsTable)
+  const posts: NotionPosts = Object.keys(postsTable)
     .map((slug) => {
       const post = postsTable[slug];
       if (!preview && !postIsPublished(post)) {
@@ -40,7 +41,11 @@ export async function getStaticProps({ preview }) {
   };
 }
 
-const Index = ({ posts = [], preview }) => {
+interface Props {
+  posts?: NotionPosts;
+  preview?: boolean;
+}
+const Index = ({ posts = [], preview }: Props) => {
   return (
     <>
       {preview && (
