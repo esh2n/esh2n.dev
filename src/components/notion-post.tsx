@@ -8,6 +8,8 @@ import { textBlock } from '@lib/notion/renderers';
 import { NotionPost } from 'types';
 import blogStyles from '@styles/blog.module.scss';
 import styled from '@emotion/styled';
+import PostTitle from '@components/post-title';
+import { getDateStr } from '@lib/blog-helpers';
 
 type Props = {
   post: NotionPost;
@@ -548,25 +550,30 @@ const NotionPostBody = ({ post, redirect, preview }: Props) => {
     });
     return returnedEl;
   };
-
+  const title = post.Page;
+  const date = getDateStr(post.Date);
+  const emoji = '📝';
   return (
-    <StyledPostBodyWrapper>
-      {preview && (
-        <div className={blogStyles.previewAlertContainer}>
-          <div className={blogStyles.previewAlert}>
-            <b>Note:</b>
-            {` `}Viewing in preview mode{' '}
-            <Link href={`/api/clear-preview?slug=${post.Slug}`}>
-              <button className={blogStyles.escapePreview}>Exit Preview</button>
-            </Link>
+    <>
+      <PostTitle title={title} date={date} emoji={emoji} />
+      <StyledPostBodyWrapper>
+        {preview && (
+          <div className={blogStyles.previewAlertContainer}>
+            <div className={blogStyles.previewAlert}>
+              <b>Note:</b>
+              {` `}Viewing in preview mode{' '}
+              <Link href={`/api/clear-preview?slug=${post.Slug}`}>
+                <button className={blogStyles.escapePreview}>Exit Preview</button>
+              </Link>
+            </div>
           </div>
-        </div>
-      )}
-      <>
-        {(!content || content.length === 0) && <p>This post has no content</p>}
-        {renderEl()}
-      </>
-    </StyledPostBodyWrapper>
+        )}
+        <>
+          {(!content || content.length === 0) && <p>This post has no content</p>}
+          {renderEl()}
+        </>
+      </StyledPostBodyWrapper>
+    </>
   );
 };
 

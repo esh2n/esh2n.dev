@@ -98,12 +98,8 @@ export async function getStaticPaths() {
 }
 
 const RenderPost = ({ post, redirect, preview }: Props) => {
-  const title = post.Page ?? '';
-  const date = getDateStr(post.Date);
-  const emoji = '📝';
   return (
     <StyledGridWrapper>
-      <PostTitle title={title} date={date} emoji={emoji} />
       <NotionPostBody post={post} preview={preview} redirect={redirect} />
       <SideProfile />
     </StyledGridWrapper>
