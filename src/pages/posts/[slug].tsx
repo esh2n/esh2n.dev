@@ -1,16 +1,45 @@
-import { useRouter } from 'next/router';
 import ErrorPage from 'next/error';
-import { getPostBySlug, getAllPosts } from '../../lib/getPosts';
-import Head from 'next/head';
-import markdownToHtml from '../../lib/markdownToHtml';
-import PostBody from '@components/post-body';
+import NextHead from 'next/head';
 import { Post as PostModel } from 'types';
-import generateOgImageUrl from 'lib/generateOgImageUrl';
+import { useRouter } from 'next/router';
+//
+import { getPostBySlug, getAllPosts } from '@lib/markdown/getPosts';
+import markdownToHtml from '@lib/markdown/markdownToHtml';
+import generateOgImageUrl from '@lib/ogp/generateOgImageUrl';
+//
+import styled from '@emotion/styled';
+import PostTitle from '@components/post-title';
+import PostBody from '@components/post-body';
+import SideProfile from '@components/side-profile';
 
 interface Props {
   post: PostModel;
   ogImageUrl: string;
 }
+
+const StyledGridWrapper = styled.article`
+  display: grid;
+  justify-content: center;
+  row-gap: 26px;
+  grid-template-areas:
+    'post-title'
+    'post-body';
+  grid-template-columns: minmax(200px, 790px);
+  @media (min-width: 500px) {
+    padding: 25px;
+  }
+  @media (min-width: 768px) {
+    padding: 25px 40px;
+  }
+  @media (min-width: 992px) {
+    grid-template-columns: minmax(200px, 790px) 300px;
+    grid-template-areas:
+      'post-title post-title'
+      'post-body side-profile';
+    row-gap: 36px;
+    column-gap: 36px;
+  }
+`;
 export default function Post({ post, ogImageUrl }: Props) {
   const router = useRouter();
   if (!router.isFallback && !post?.slug) {
@@ -22,16 +51,16 @@ export default function Post({ post, ogImageUrl }: Props) {
         <>Loading…</>
       ) : (
         <>
-          <Head>
+          <NextHead>
             <title>{post.title} | esh2n.dev</title>
             <meta property="og:image" content={ogImageUrl} />
-          </Head>
-          <div>
-            <h1>{post.title}</h1>
-            <p>createdAt: {post.date}</p>
-            <p>author: {post.author.name}</p>
-          </div>
-          <PostBody html={post.content} />
+            <meta name="twitter:image" content={ogImageUrl} />
+          </NextHead>
+          <StyledGridWrapper>
+            <PostTitle title={post.title} date={post.date} emoji={post.emoji} />
+            <SideProfile />
+            <PostBody html={post.content} coverImage={post.coverImage} />
+          </StyledGridWrapper>
         </>
       )}
     </div>
@@ -50,6 +79,7 @@ export async function getStaticProps({ params }) {
     'category',
     'excerpt',
     'color',
+    'emoji',
   ]);
   const content = await markdownToHtml(post.content || '');
   const ogImageUrl = generateOgImageUrl(post);
@@ -68,13 +98,7 @@ export async function getStaticPaths() {
   const posts = getAllPosts(['slug']);
 
   return {
-    paths: posts.map((post) => {
-      return {
-        params: {
-          slug: post.slug,
-        },
-      };
-    }),
+    paths: posts.map((post) => `/posts/${post.slug}`),
     fallback: false,
   };
 }

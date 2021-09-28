@@ -1,29 +1,22 @@
 ---
-title: '【Flutter】FCMでプッシュ通知を送る際のOS毎の注意点'
-excerpt: '今回は、`FCM(Firebase Cloud Messaging)`のプッシュ通知を行う際に詰まった点を紹介します。'
+title: 'FlutterでFCMでプッシュ通知を送る際のOS毎の注意点'
+date: '2020-11-04'
+excerpt: '今回は、`FCM(Firebase Cloud Messaging)`のプッシュ通知を行う際に詰まった点を紹介します。Flutter で FCM を制御する方法はこちらの note の記事がわかりやすいかと思います。'
 coverImage: 'https://user-images.githubusercontent.com/55518345/98099391-d9255500-1ed2-11eb-9056-5d4b813c7067.png'
-date: '2020-11-4'
 author:
-  name: Shunya Endo
-  picture: '/assets/blog/authors/joe.jpeg'
+  name: 'esh2n'
+  picture: 'https://avatars.githubusercontent.com/u/55518345?v=4'
 tags:
   - Flutter
   - Firebase
   - TypeScript
-  - Notification
 categories:
   - DEV
-color: '#0868F4'
+color: '#02569B'
+emoji: '😱'
 ---
 
-こんにちは、都内スタートアップにて、Flutter x Firebase を用いて
-エンジニアインターンをしている遠藤([@esh2n](https://twitter.com/esh2n))と申します。
-
 今回は、`FCM(Firebase Cloud Messaging)`のプッシュ通知を行う際に詰まった点を紹介します。
-
-<div align='center'>
-  <img src="https://user-images.githubusercontent.com/55518345/98099391-d9255500-1ed2-11eb-9056-5d4b813c7067.png" style="width: 600px">
-</div>
 
 Flutter で FCM を制御する方法は[こちら](https://note.com/welchi/n/n649728c5574d)の note の記事がわかりやすいかと思います。
 
@@ -219,8 +212,7 @@ Flutter 側ではネイティブコードを`MethodChannel`から invoke しま�
   }
 ```
 
-出来たチャンネルはこんな感じです。
-ちゃんとポップアップがオンになってそうです。
+出来たチャンネルとみてみるとちゃんとポップアップがオンになってそうです。
 
 <div align='center'>
   <img src="https://user-images.githubusercontent.com/55518345/97860475-8c604380-1d45-11eb-8eda-809e17a6cdfe.jpg" style="width: 200px">
@@ -276,5 +268,3 @@ await admin.messaging().sendToDevice(message.fcmToken, payload, options);
 改めて一次ソースの大切さと困ったら GitHub の issue 見れば同じ問題抱えている人がいるんだなあとしみじみ思いました。
 
 今回紹介した内容がもし間違っていたら、Twitter 等でメッセージください。
-
-(弊社、カルチャというゲームコミュニティアプリを作成しています。副業でもフルタイムでも Flutter エンジニアを募集しているので、興味ある方は[こちら](https://twitter.com/rafe_kun)から DM ください！)

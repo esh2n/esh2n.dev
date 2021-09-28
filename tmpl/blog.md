@@ -1,16 +1,18 @@
 ---
 title: ''
+date: '2021'
 excerpt: ''
 coverImage: ''
-date: ''
 author:
-  name: Shunya Endo
-  picture: '/assets/blog/authors/joe.jpeg'
+  name: 'esh2n'
+  picture: 'https://avatars.githubusercontent.com/u/55518345?v=4'
 tags:
+  -
   -
   -
   -
 categories:
   - DEV
 color: '#0868F4'
+emoji: '🙅'
 ---
