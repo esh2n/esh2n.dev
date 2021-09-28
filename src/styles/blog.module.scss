@@ -127,6 +127,7 @@
   max-width: calc(600px + 10%);
   margin: 0 auto;
   padding: 5%;
+  width: 100%;
 }
 
 .post :global(hr) {
@@ -142,6 +143,8 @@
   max-width: 100%;
   margin-top: 8px;
   margin-bottom: 8px;
+  border: 1px solid #cacaca;
+  border-radius: 15px;
   background-color: var(--bg);
 }
 
@@ -149,6 +152,7 @@
   box-shadow: none;
   margin: 0;
   padding: 0;
+  border-radius: 15px;
 }
 
 .bookmarkContentsWrapper {
@@ -168,10 +172,8 @@
   align-items: stretch;
   text-align: left;
   overflow: hidden;
-  border: 1px solid #cacaca;
-  border-radius: 3px;
   position: relative;
-  color: inherit;
+  color: #333;
   fill: inherit;
 }
 
@@ -234,7 +236,6 @@
   padding: 0;
   background-color: #ff0000;
 }
-
 
 .bookmarkCoverWrapper3 {
   width: 100%;

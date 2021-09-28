@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import styled from '@emotion/styled';
 interface Props {
-  html: string;
-  coverImage: string;
+  html?: string;
+  coverImage?: string;
 }
 const StyledPostBodyWrapper = styled.article`
   grid-area: post-body;

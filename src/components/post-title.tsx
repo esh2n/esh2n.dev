@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 interface Props {
   title: string;
-  date: Date;
+  date: Date | string;
   emoji: string;
 }
 const StyledPostWrapper = styled.div`
