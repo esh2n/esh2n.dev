@@ -5,7 +5,8 @@
       "~/*": ["src/*"],
       "@posts/*": ["posts/*"],
       "@components/*": ["components/*"],
-      "@lib/*": ["lib/*"]
+      "@lib/*": ["lib/*"],
+      "@styles/*": ["styles/*"]
     },
     "target": "es5",
     "downlevelIteration": true,

@@ -1,7 +1,6 @@
 import Link from 'next/link';
 
 import blogStyles from '../../styles/blog.module.scss';
-import sharedStyles from '../../styles/shared.module.scss';
 
 import { getBlogLink, getDateStr, postIsPublished } from '../../lib/blog-helpers';
 import { textBlock } from '../../lib/notion/renderers';
@@ -55,7 +54,7 @@ const Index = ({ posts = [], preview }) => {
           </div>
         </div>
       )}
-      <div className={`${sharedStyles.layout} ${blogStyles.blogIndex}`}>
+      <div className={`${blogStyles.blogIndex}`}>
         {posts.length === 0 && <p className={blogStyles.noPosts}>There are no posts yet</p>}
         {posts.map((post) => {
           return (
