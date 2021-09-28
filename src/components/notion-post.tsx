@@ -144,7 +144,7 @@ const StyledPostBodyWrapper = styled.article`
     border-radius: 4px;
     font-size: 0.7em;
     margin: 0px 0.2em 0.4em;
-    vertical-align: text-top;
+    vertical-align: middle;
   }
 
   blockquote {
