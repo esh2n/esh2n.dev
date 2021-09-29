@@ -1,7 +1,7 @@
-import Link from 'next/link';
-import ExtLink from './ext-link';
 import { useRouter } from 'next/router';
 import styles from '../styles/header.module.scss';
+import Link from 'next/link';
+import ExtLink from './ext-link';
 
 const navItems: { label: string; page?: string; link?: string }[] = [
   { label: 'Home', page: '/' },

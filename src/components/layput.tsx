@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React from 'react';
 import Header from '@components/header';
+import PrimarySearchAppBar from '@components/header-mui';
 import styled from '@emotion/styled';
 
 interface Props {
@@ -31,7 +32,7 @@ const Layout: React.FC<Props> = ({ children }) => {
           rel="stylesheet"
         />
       </Head>
-      <Header />
+      <PrimarySearchAppBar />
 
       <DisplayedPage>
         <>{children}</>
