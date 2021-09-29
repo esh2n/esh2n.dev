@@ -25,6 +25,7 @@ const StyledGridWrapper = styled.article`
     'post-title'
     'post-body';
   grid-template-columns: minmax(200px, 790px);
+  padding: 10px 0;
   @media (min-width: 500px) {
     padding: 25px;
   }
