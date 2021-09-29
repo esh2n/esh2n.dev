@@ -1,19 +1,24 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  IconButton,
+  MenuItem,
+  Menu,
+  Divider,
+  ListItemText,
+  ListItemIcon,
+  Typography,
+  useScrollTrigger,
+  Slide,
+  CssBaseline,
+} from '@mui/material';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import FeedIcon from '@mui/icons-material/Feed';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import HomeIcon from '@mui/icons-material/Home';
 import styled from '@emotion/styled';
-import Divider from '@mui/material/Divider';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import Typography from '@mui/material/Typography';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import { useRouter } from 'next/router';
@@ -30,7 +35,34 @@ const StyledWrapper = styled.div`
   }
 `;
 
-export default function PrimarySearchAppBar() {
+const ElevationScroll = ({ children }) => {
+  const trigger = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 100,
+  });
+
+  return React.cloneElement(children, {
+    elevation: trigger ? 1 : 0,
+  });
+};
+
+// function HideOnScroll({ children, window }) {
+//   const trigger = useScrollTrigger({
+//     disableHysteresis: true,
+//     threshold: 0,
+//     target: window ? window() : undefined,
+//   });
+
+//   console.log(trigger);
+
+//   return (
+//     <Slide appear={false} direction="down" in={!trigger}>
+//       {children}
+//     </Slide>
+//   );
+// }
+
+export default function PrimarySearchAppBar(props) {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const router = useRouter();
 
@@ -123,16 +155,9 @@ export default function PrimarySearchAppBar() {
   );
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <>
       <AppBar position="sticky" color="inherit" className="appbar">
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
-          ></IconButton>
           <Box sx={{ flexGrow: 1 }} />
           <Box>
             <IconButton
@@ -149,6 +174,6 @@ export default function PrimarySearchAppBar() {
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
-    </Box>
+    </>
   );
 }

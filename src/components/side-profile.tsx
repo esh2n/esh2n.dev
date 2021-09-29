@@ -55,7 +55,7 @@ const StyledSideWrapper = styled.div`
   &.scrolled {
     position: sticky;
     right: 0;
-    top: 16px;
+    top: 96px;
   }
 `;
 
