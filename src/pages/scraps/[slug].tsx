@@ -103,17 +103,10 @@ export async function getStaticPaths() {
 
 const RenderPost = ({ post, redirect, preview, ogImageUrl }: Props) => {
   return (
-    <>
-      <NextHead>
-        <title>{post.Page} | esh2n.dev</title>
-        <meta property="og:image" content={ogImageUrl} />
-        <meta name="twitter:image" content={ogImageUrl} />
-      </NextHead>
-      <StyledGridWrapper>
-        <NotionPostBody post={post} preview={preview} redirect={redirect} />
-        <SideProfile />
-      </StyledGridWrapper>
-    </>
+    <StyledGridWrapper>
+      <NotionPostBody post={post} preview={preview} redirect={redirect} ogImageUrl={ogImageUrl} />
+      <SideProfile />
+    </StyledGridWrapper>
   );
 };
 

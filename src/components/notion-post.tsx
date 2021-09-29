@@ -10,11 +10,13 @@ import blogStyles from '@styles/blog.module.scss';
 import styled from '@emotion/styled';
 import PostTitle from '@components/post-title';
 import { getDateStr } from '@lib/blog-helpers';
+import NextHead from 'next/head';
 
 type Props = {
   post: NotionPost;
   redirect: string;
   preview: boolean;
+  ogImageUrl?: string;
 };
 
 interface IListItems {
@@ -154,7 +156,7 @@ const StyledPostBodyWrapper = styled.article`
   }
 `;
 
-const NotionPostBody = ({ post, redirect, preview }: Props) => {
+const NotionPostBody = ({ post, redirect, preview, ogImageUrl }: Props) => {
   const listTypes = new Set(['bulleted_list', 'numbered_list']);
   const router = useRouter();
   const listItems: IListItems = {
@@ -475,6 +477,11 @@ const NotionPostBody = ({ post, redirect, preview }: Props) => {
   const emoji = post.Emoji;
   return (
     <>
+      <NextHead>
+        <title>{title} | esh2n.dev</title>
+        <meta property="og:image" content={ogImageUrl} />
+        <meta name="twitter:image" content={ogImageUrl} />
+      </NextHead>
       <PostTitle title={title} date={date} emoji={emoji} />
       <StyledPostBodyWrapper>
         {preview && (
