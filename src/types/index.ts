@@ -68,6 +68,9 @@ export type NotionPost = {
   Published: 'Yes' | 'No';
   Date: number;
   Page: string;
+  Emoji?: string;
+  Tag: string;
+  ColorCode: string;
   preview: unknown[][];
   content: PostContent[];
   hasTweet: boolean;

@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 //
 import { getPostBySlug, getAllPosts } from '@lib/markdown/getPosts';
 import markdownToHtml from '@lib/markdown/markdownToHtml';
-import generateOgImageUrl from '@lib/ogp/generateOgImageUrl';
+import { generateOgImageUrlByPost } from '@lib/ogp/generateOgImageUrl';
 //
 import styled from '@emotion/styled';
 import PostTitle from '@components/post-title';
@@ -82,7 +82,7 @@ export async function getStaticProps({ params }) {
     'emoji',
   ]);
   const content = await markdownToHtml(post.content || '');
-  const ogImageUrl = generateOgImageUrl(post);
+  const ogImageUrl = generateOgImageUrlByPost(post);
   return {
     props: {
       post: {

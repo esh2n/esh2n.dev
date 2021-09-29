@@ -32,7 +32,6 @@ interface IListItems {
 const textColor = '#333333';
 const bgColor = '#edf2f7';
 const primaryColor = '#2e343f';
-const secondaryColor = '#82a0c1';
 const whiteTextColor = '#d8deea';
 
 const StyledPostBodyWrapper = styled.article`
@@ -42,9 +41,6 @@ const StyledPostBodyWrapper = styled.article`
   filter: drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.1));
   width: 100%;
   display: block;
-  div {
-    /* text-align: center; */
-  }
 
   *,
   :after,
@@ -59,7 +55,6 @@ const StyledPostBodyWrapper = styled.article`
       padding: 48px 40px;
     }
     padding: 36px 20px;
-    font-family: 'M PLUS Rounded 1c';
   }
 
   h1,
@@ -88,12 +83,6 @@ const StyledPostBodyWrapper = styled.article`
   p {
     text-align: start;
   }
-
-  /* img {
-    max-width: 100%;
-    border-radius: 10px;
-    filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.6));
-  } */
 
   p + p {
     margin-top: 1.2em;
@@ -157,75 +146,6 @@ const StyledPostBodyWrapper = styled.article`
   li {
     text-align: start;
   }
-  /*
-  ol,
-  ul {
-    margin: 20px 0;
-  }
-
-  ol {
-    code {
-      vertical-align: top;
-    }
-    counter-reset: num;
-    list-style-type: none !important;
-    padding: 0;
-    margin: 0;
-  }
-  ol,
-  li {
-    position: relative;
-    padding-left: 30px;
-    line-height: 1.5em;
-    padding: 0.5em 0.5em 0.5em 30px;
-  }
-
-  ol li:before {
-    position: absolute;
-    counter-increment: num;
-    content: counter(num);
-    display: inline-block;
-    background: ${primaryColor};
-    color: ${whiteTextColor};
-    font-family: 'Arial', sans-serif;
-    font-weight: bold;
-    font-size: 14px;
-    border-radius: 50%;
-    left: 0;
-    width: 22px;
-    height: 22px;
-    line-height: 22px;
-    text-align: center;
-    top: 10px;
-  }
-
-  ul {
-    code {
-      vertical-align: top;
-    }
-    list-style-type: none !important;
-    padding: 0;
-    margin: 0;
-  }
-  ul li {
-    position: relative;
-    padding-left: 30px;
-    line-height: 1.5em;
-    padding: 0.5em 0.5em 0.5em 30px;
-  }
-
-  ul li:before {
-    position: absolute;
-    content: '';
-    background: ${primaryColor};
-    border-radius: 50%;
-    left: 20px;
-    width: 6px;
-    height: 6px;
-    top: 52%;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-  } */
 
   & {
     h1:first-child {
@@ -552,7 +472,7 @@ const NotionPostBody = ({ post, redirect, preview }: Props) => {
   };
   const title = post.Page;
   const date = getDateStr(post.Date);
-  const emoji = '📝';
+  const emoji = post.Emoji;
   return (
     <>
       <PostTitle title={title} date={date} emoji={emoji} />

@@ -1,11 +1,24 @@
-import { Post } from 'types';
+import { NotionPost, Post } from 'types';
 
-export default function generateOgImageUrl(post: Post) {
+export const generateOgImageUrlByPost = (post: Post) => {
   const baseUrl = process.env.OGP_URL;
   const tags = generateJoinedTagsString(post.tags);
   return `${baseUrl}/api/og/${tags}/?title=${post.title}&body=${post.excerpt}&color=${generateColor(
     post.color,
   )}`;
+};
+
+export const generateOgImageUrlByNotion = (post: NotionPost) => {
+  const baseUrl = process.env.OGP_URL;
+  const tags = generateJoinedTagsString(divideTagsToList(post.Tag));
+  const body = 'Notionからのメモ';
+  return `${baseUrl}/api/og/${tags}/?title=${post.Page}&body=${body}&color=${generateColor(
+    post.ColorCode,
+  )}`;
+};
+
+function divideTagsToList(tags: string) {
+  return tags.split(',');
 }
 
 function generateJoinedTagsString(tags: string[]) {

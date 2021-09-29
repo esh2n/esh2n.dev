@@ -7,12 +7,14 @@ import NotionPostBody from '@components/notion-post';
 import styled from '@emotion/styled';
 import { Tweet, NotionPost } from 'types';
 import SideProfile from '@components/side-profile';
-import PostTitle from '@components/post-title';
+import { generateOgImageUrlByNotion } from '@lib/ogp/generateOgImageUrl';
+import NextHead from 'next/head';
 
 type Props = {
   post?: NotionPost;
   redirect?: string;
   preview: boolean;
+  ogImageUrl?: string;
 };
 
 const StyledGridWrapper = styled.article`
@@ -77,11 +79,13 @@ export async function getStaticProps({ params: { slug }, preview }) {
 
   const { users } = await getNotionUsers(post.Authors || []);
   post.Authors = Object.keys(users).map((id) => users[id].full_name);
+  const ogImageUrl = generateOgImageUrlByNotion(post);
 
   return {
     props: {
       post,
       preview: preview || false,
+      ogImageUrl,
     },
     revalidate: 10,
   };
@@ -97,12 +101,19 @@ export async function getStaticPaths() {
   };
 }
 
-const RenderPost = ({ post, redirect, preview }: Props) => {
+const RenderPost = ({ post, redirect, preview, ogImageUrl }: Props) => {
   return (
-    <StyledGridWrapper>
-      <NotionPostBody post={post} preview={preview} redirect={redirect} />
-      <SideProfile />
-    </StyledGridWrapper>
+    <>
+      <NextHead>
+        <title>{post.Page} | esh2n.dev</title>
+        <meta property="og:image" content={ogImageUrl} />
+        <meta name="twitter:image" content={ogImageUrl} />
+      </NextHead>
+      <StyledGridWrapper>
+        <NotionPostBody post={post} preview={preview} redirect={redirect} />
+        <SideProfile />
+      </StyledGridWrapper>
+    </>
   );
 };
 
