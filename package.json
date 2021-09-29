@@ -20,7 +20,7 @@
     "@material/mwc-button": "^0.23.0",
     "@next/env": "^11.1.2",
     "@okra-ui/gradient-text": "^0.0.10",
-    "@okra-ui/string-to-html": "^0.0.47",
+    "@okra-ui/string-to-html": "^0.0.50",
     "@zeit/react-jsx-parser": "^2.0.0",
     "async-sema": "^3.1.1",
     "framer-motion": "^4",
