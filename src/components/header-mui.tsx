@@ -18,6 +18,8 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import useScrollTrigger from '@mui/material/useScrollTrigger';
+import Slide from '@mui/material/Slide';
 
 const StyledWrapper = styled.div`
   .MuiMenu-root {
@@ -30,7 +32,20 @@ const StyledWrapper = styled.div`
   }
 `;
 
-export default function PrimarySearchAppBar() {
+function HideOnScroll(props) {
+  const { children, window } = props;
+  const trigger = useScrollTrigger({
+    target: window ? window() : undefined,
+  });
+
+  return (
+    <Slide appear={false} direction="down" in={!trigger}>
+      {children}
+    </Slide>
+  );
+}
+
+export default function PrimarySearchAppBar(props) {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const router = useRouter();
 
@@ -123,16 +138,9 @@ export default function PrimarySearchAppBar() {
   );
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <>
       <AppBar position="sticky" color="inherit" className="appbar">
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
-          ></IconButton>
           <Box sx={{ flexGrow: 1 }} />
           <Box>
             <IconButton
@@ -149,6 +157,6 @@ export default function PrimarySearchAppBar() {
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
-    </Box>
+    </>
   );
 }
