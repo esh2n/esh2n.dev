@@ -62,6 +62,14 @@ body {
   color: #f5f5f5;
 }
 
+.MuiToolbar-root {
+  background-color: #2e3440;
+  /* background-size: cover; */
+  -webkit-filter: blur(0px);
+  filter: blur(0px);
+  color: #f5f5f5;
+}
+
 code[class*='language-'],
 pre[class*='language-'] {
   color: #000;
