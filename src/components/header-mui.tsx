@@ -23,11 +23,10 @@ import Link from 'next/link';
 
 interface Props {
   window?: () => Window;
-  children: React.ReactElement;
 }
 
 export default function PrimarySearchAppBar(props: Props) {
-  const { children, window } = props;
+  const { window } = props;
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 0,
