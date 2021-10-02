@@ -3,21 +3,17 @@ import { useEffect } from 'react';
 import { Post as PostModel } from 'types';
 import styled from '@emotion/styled';
 import { getAllPosts } from '@lib/markdown/getPosts';
+import PostCard from '@components/post-card';
 
 interface Props {
   allPosts: PostModel[];
 }
 
-const StyledFlexWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  font-size: 30px;
+const StyledPostsWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 30px;
   padding: 25px;
-  a {
-    font-size: 16px;
-    color: #333333;
-  }
 `;
 
 const Posts = ({ allPosts }: Props) => {
@@ -27,25 +23,25 @@ const Posts = ({ allPosts }: Props) => {
     import('@okra-ui/gradient-text');
   }, []);
   return (
-    <StyledFlexWrapper>
-      <gradient-text text="キラキラブログ一覧" />
+    <>
       {morePosts.length > 0 && (
-        <div>
+        <StyledPostsWrapper>
           {allPosts.map((post, index) => (
             <div key={index}>
               <Link as={`/posts/${post.slug}`} href="/posts/[slug]">
                 <a className="hover:underline">
-                  {post.emoji}
-                  {'　'}
-                  <gradient-text text={post.title} />
-                  {`(${post.date})`}
+                  <PostCard
+                    title={post.title}
+                    emoji={post.emoji}
+                    date={post.date.toString().split('-').join('/')}
+                  />
                 </a>
               </Link>
             </div>
           ))}
-        </div>
+        </StyledPostsWrapper>
       )}
-    </StyledFlexWrapper>
+    </>
   );
 };
 

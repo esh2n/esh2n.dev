@@ -11,58 +11,29 @@ import {
   ListItemIcon,
   Typography,
   useScrollTrigger,
-  Slide,
-  CssBaseline,
 } from '@mui/material';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import FeedIcon from '@mui/icons-material/Feed';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import HomeIcon from '@mui/icons-material/Home';
-import styled from '@emotion/styled';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
-const StyledWrapper = styled.div`
-  .MuiMenu-root {
-    background-color: #2e3440;
-    background-image: url('https://images.unsplash.com/photo-1440688807730-73e4e2169fb8?format=auto&auto=compress&dpr=2&crop=entropy&fit=crop&w=1920&h=1282&q=80');
-    background-size: cover;
-    -webkit-filter: blur(0px);
-    filter: blur(0px);
-    color: #f5f5f5;
-  }
-`;
+interface Props {
+  window?: () => Window;
+  children: React.ReactElement;
+}
 
-const ElevationScroll = ({ children }) => {
+export default function PrimarySearchAppBar(props: Props) {
+  const { children, window } = props;
   const trigger = useScrollTrigger({
     disableHysteresis: true,
-    threshold: 100,
+    threshold: 0,
+    target: window ? window() : undefined,
   });
 
-  return React.cloneElement(children, {
-    elevation: trigger ? 1 : 0,
-  });
-};
-
-// function HideOnScroll({ children, window }) {
-//   const trigger = useScrollTrigger({
-//     disableHysteresis: true,
-//     threshold: 0,
-//     target: window ? window() : undefined,
-//   });
-
-//   console.log(trigger);
-
-//   return (
-//     <Slide appear={false} direction="down" in={!trigger}>
-//       {children}
-//     </Slide>
-//   );
-// }
-
-export default function PrimarySearchAppBar(props) {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const router = useRouter();
 
@@ -79,7 +50,7 @@ export default function PrimarySearchAppBar(props) {
   const mobileMenuId = 'primary-search-account-menu-mobile';
 
   const renderMobileMenu = (
-    <StyledWrapper>
+    <>
       <Menu
         anchorOrigin={{
           vertical: 'top',
@@ -151,12 +122,12 @@ export default function PrimarySearchAppBar(props) {
           </MenuItem>
         </Link>
       </Menu>
-    </StyledWrapper>
+    </>
   );
 
   return (
     <>
-      <AppBar position="sticky" color="inherit" className="appbar">
+      <AppBar position="sticky" color="inherit" className="appbar" elevation={trigger ? 4 : 0}>
         <Toolbar>
           <Box sx={{ flexGrow: 1 }} />
           <Box>

@@ -58,7 +58,11 @@ export default function Post({ post, ogImageUrl }: Props) {
             <meta name="twitter:image" content={ogImageUrl} />
           </NextHead>
           <StyledGridWrapper>
-            <PostTitle title={post.title} date={post.date} emoji={post.emoji} />
+            <PostTitle
+              title={post.title}
+              date={post.date.toString().split('-').join('/')}
+              emoji={post.emoji}
+            />
             <SideProfile />
             <PostBody html={post.content} coverImage={post.coverImage} />
           </StyledGridWrapper>

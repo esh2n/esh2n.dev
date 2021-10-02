@@ -6,7 +6,9 @@ import { getBlogLink, getDateStr, postIsPublished } from '../../lib/blog-helpers
 import { textBlock } from '../../lib/notion/renderers';
 import getNotionUsers from '../../lib/notion/getNotionUsers';
 import getBlogIndex from '../../lib/notion/getBlogIndex';
-import { NotionPosts } from 'types';
+import { NotionPost, NotionPosts } from 'types';
+import styled from '@emotion/styled';
+import PostCard from '@components/post-card';
 
 export async function getStaticProps({ preview }) {
   const postsTable = await getBlogIndex();
@@ -28,10 +30,13 @@ export async function getStaticProps({ preview }) {
 
   const { users } = await getNotionUsers([...authorsToGet]);
 
-  posts.map((post) => {
+  posts.map((post: NotionPost) => {
     post.Authors = post.Authors.map((id) => users[id].full_name);
   });
 
+  posts.sort((post1: NotionPost, post2: NotionPost) =>
+    new Date(post1.Date) > new Date(post2.Date) ? -1 : 1,
+  );
   return {
     props: {
       preview: preview || false,
@@ -41,6 +46,13 @@ export async function getStaticProps({ preview }) {
   };
 }
 
+const StyledPostsWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 30px;
+  padding: 25px;
+`;
+
 interface Props {
   posts?: NotionPosts;
   preview?: boolean;
@@ -48,44 +60,20 @@ interface Props {
 const Index = ({ posts = [], preview }: Props) => {
   return (
     <>
-      {preview && (
-        <div className={blogStyles.previewAlertContainer}>
-          <div className={blogStyles.previewAlert}>
-            <b>Note:</b>
-            {` `}Viewing in preview mode{' '}
-            <Link href={`/api/clear-preview`}>
-              <button className={blogStyles.escapePreview}>Exit Preview</button>
-            </Link>
-          </div>
-        </div>
-      )}
-      <div className={`${blogStyles.blogIndex}`}>
-        {posts.length === 0 && <p className={blogStyles.noPosts}>There are no posts yet</p>}
+      <StyledPostsWrapper>
         {posts.map((post) => {
           return (
-            <div className={blogStyles.postPreview} key={post.Slug}>
-              <h3>
-                <span className={blogStyles.titleContainer}>
-                  {!post.Published && <span className={blogStyles.draftBadge}>Draft</span>}
-                  <Link href="/scraps/[slug]" as={getBlogLink(post.Slug)}>
-                    <a>{post.Page}</a>
-                  </Link>
-                </span>
-              </h3>
-              {post.Authors.length > 0 && (
-                <div className="authors">By: {post.Authors.join(' ')}</div>
-              )}
-              {post.Date && <div className="posted">Posted: {getDateStr(post.Date)}</div>}
-              <p>
-                {(!post.preview || post.preview.length === 0) && 'No preview available'}
-                {(post.preview || []).map((block, idx) =>
-                  textBlock(block, true, `${post.Slug}${idx}`),
-                )}
-              </p>
+            <div key={post.Slug}>
+              {!post.Published && <span className={blogStyles.draftBadge}>Draft</span>}
+              <Link href="/scraps/[slug]" as={getBlogLink(post.Slug)}>
+                <a>
+                  <PostCard title={post.Page} emoji={post.Emoji} date={getDateStr(post.Date)} />
+                </a>
+              </Link>
             </div>
           );
         })}
-      </div>
+      </StyledPostsWrapper>
     </>
   );
 };
