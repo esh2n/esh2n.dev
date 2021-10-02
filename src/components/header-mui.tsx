@@ -23,26 +23,10 @@ import Link from 'next/link';
 
 interface Props {
   window?: () => Window;
-  children: React.ReactElement;
-}
-
-function ElevationScroll(props: Props) {
-  const { children, window } = props;
-  const trigger = useScrollTrigger({
-    disableHysteresis: true,
-    threshold: 0,
-    target: window ? window() : undefined,
-  });
-
-  console.log(trigger);
-
-  return React.cloneElement(children, {
-    elevation: trigger ? 4 : 0,
-  });
 }
 
 export default function PrimarySearchAppBar(props: Props) {
-  const { children, window } = props;
+  const { window } = props;
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 0,
