@@ -1,19 +1,23 @@
 import Link from 'next/link';
-import { useEffect } from 'react';
-import { Post as PostModel } from 'types';
+import { useEffect, useMemo } from 'react';
+import { MarkDownPost } from 'types';
 import styled from '@emotion/styled';
 import { getAllPosts } from '@lib/markdown/getPosts';
 import PostCard from '@components/post-card';
+import { useRecoilState } from 'recoil';
+import { blogState } from '@atoms/blog';
 
 interface Props {
-  allPosts: PostModel[];
+  allPosts: MarkDownPost[];
 }
 
 const StyledPostsWrapper = styled.div`
   display: grid;
+  margin: 0 auto;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-gap: 30px;
   padding: 25px;
+  max-width: 1200px;
 `;
 
 const Posts = ({ allPosts }: Props) => {

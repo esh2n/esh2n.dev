@@ -2,7 +2,6 @@ import { ThemeProvider } from '@emotion/react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React from 'react';
-import Header from '@components/header';
 import PrimarySearchAppBar from '@components/header-mui';
 import styled from '@emotion/styled';
 

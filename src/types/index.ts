@@ -1,5 +1,14 @@
-// Posts
-export interface Post {
+// Post
+type Post = MarkDownPost | NotionPost;
+
+export type Posts = Post[];
+
+export type BlogState = {
+  posts: Posts;
+};
+
+// MarkDownPost
+export interface MarkDownPost {
   title?: string;
   date?: Date;
   slug?: string;
@@ -12,6 +21,11 @@ export interface Post {
   color?: string;
   emoji?: string;
 }
+export type MarkDownPosts = MarkDownPost[];
+
+export type MarkDownBlogState = {
+  posts: MarkDownPosts;
+};
 
 export interface Author {
   name: string;
@@ -77,6 +91,10 @@ export type NotionPost = {
 };
 
 export type NotionPosts = NotionPost[];
+
+export type NotionBlogState = {
+  posts: NotionPosts;
+};
 
 export interface Tweet {
   url: string;

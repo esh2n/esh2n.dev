@@ -3,12 +3,14 @@ import Link from 'next/link';
 import blogStyles from '../../styles/blog.module.scss';
 
 import { getBlogLink, getDateStr, postIsPublished } from '../../lib/blog-helpers';
-import { textBlock } from '../../lib/notion/renderers';
 import getNotionUsers from '../../lib/notion/getNotionUsers';
 import getBlogIndex from '../../lib/notion/getBlogIndex';
 import { NotionPost, NotionPosts } from 'types';
 import styled from '@emotion/styled';
 import PostCard from '@components/post-card';
+import { useRecoilState } from 'recoil';
+import { notionState } from '@atoms/blog';
+import { useEffect, useMemo } from 'react';
 
 export async function getStaticProps({ preview }) {
   const postsTable = await getBlogIndex();
@@ -48,6 +50,7 @@ export async function getStaticProps({ preview }) {
 
 const StyledPostsWrapper = styled.div`
   display: grid;
+  margin: 0 auto;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-gap: 30px;
   padding: 25px;
@@ -58,10 +61,20 @@ interface Props {
   preview?: boolean;
 }
 const Index = ({ posts = [], preview }: Props) => {
+  const [blog, setBlog] = useRecoilState(notionState);
+  const notionPosts = useMemo(() => blog.posts, [blog.posts]) ?? posts;
+
+  useEffect(() => {
+    setBlog((state) => ({
+      ...state,
+      posts: posts,
+    }));
+  });
+
   return (
     <>
       <StyledPostsWrapper>
-        {posts.map((post) => {
+        {notionPosts.map((post) => {
           return (
             <div key={post.Slug}>
               {!post.Published && <span className={blogStyles.draftBadge}>Draft</span>}
