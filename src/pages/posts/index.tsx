@@ -14,10 +14,15 @@ interface Props {
 const StyledPostsWrapper = styled.div`
   display: grid;
   margin: 0 auto;
+  justify-content: center;
+
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-gap: 30px;
   padding: 25px;
   max-width: 1200px;
+  @media (max-width: 480px) {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
 `;
 
 const Posts = ({ allPosts }: Props) => {

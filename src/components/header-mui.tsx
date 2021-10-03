@@ -42,7 +42,8 @@ export default function PrimarySearchAppBar(props: Props) {
     setMobileMoreAnchorEl(null);
   };
 
-  const handleMobileMenuOpen = (event) => {
+  const handleMobileMenuOpen = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    console.log(event.currentTarget);
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
