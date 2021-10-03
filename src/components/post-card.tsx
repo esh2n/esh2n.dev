@@ -3,6 +3,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import styled from '@emotion/styled';
+import { useState } from 'react';
 
 interface Props {
   title: string;
@@ -20,9 +21,14 @@ const StyledPostWrapper = styled.div`
 `;
 
 export default function PostCard({ title, emoji, date }: Props) {
+  const [elevation, setElevation] = useState(0);
+
   return (
-    <StyledPostWrapper>
-      <Card sx={{ display: 'flex', flexDirection: 'column', height: '200px' }}>
+    <StyledPostWrapper onMouseEnter={() => setElevation(24)} onMouseLeave={() => setElevation(0)}>
+      <Card
+        sx={{ display: 'flex', flexDirection: 'column', height: '200px' }}
+        elevation={elevation}
+      >
         <Box
           sx={{
             display: 'flex',
