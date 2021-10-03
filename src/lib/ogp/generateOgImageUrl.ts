@@ -1,6 +1,6 @@
-import { NotionPost, Post } from 'types';
+import { NotionPost, MarkDownPost } from 'types';
 
-export const generateOgImageUrlByPost = (post: Post) => {
+export const generateOgImageUrlByPost = (post: MarkDownPost) => {
   const baseUrl = process.env.OGP_URL;
   const tags = generateJoinedTagsString(post.tags);
   return `${baseUrl}/api/og/${tags}/?title=${post.title}&body=${post.excerpt}&color=${generateColor(

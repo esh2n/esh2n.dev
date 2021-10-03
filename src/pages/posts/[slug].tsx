@@ -1,6 +1,6 @@
 import ErrorPage from 'next/error';
 import NextHead from 'next/head';
-import { Post as PostModel } from 'types';
+import { MarkDownPost } from 'types';
 import { useRouter } from 'next/router';
 //
 import { getPostBySlug, getAllPosts } from '@lib/markdown/getPosts';
@@ -13,7 +13,7 @@ import PostBody from '@components/post-body';
 import SideProfile from '@components/side-profile';
 
 interface Props {
-  post: PostModel;
+  post: MarkDownPost;
   ogImageUrl: string;
 }
 
