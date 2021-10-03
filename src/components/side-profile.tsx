@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons';
@@ -71,7 +71,7 @@ const Spacer = styled.div`
 `;
 
 const SideProfile = ({}: Props) => {
-  const [scrolled, setScrolled] = React.useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const handleScroll = () => {
     const offset = window.scrollY;
     if (offset > 390) {

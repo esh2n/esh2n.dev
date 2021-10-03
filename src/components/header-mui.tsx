@@ -1,4 +1,3 @@
-import * as React from 'react';
 import {
   AppBar,
   Box,
@@ -12,6 +11,7 @@ import {
   Typography,
   useScrollTrigger,
 } from '@mui/material';
+import { useState } from 'react';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import FeedIcon from '@mui/icons-material/Feed';
 import MoreIcon from '@mui/icons-material/MoreVert';
@@ -33,7 +33,7 @@ export default function PrimarySearchAppBar(props: Props) {
     target: window ? window() : undefined,
   });
 
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   const router = useRouter();
 
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);

@@ -3,12 +3,15 @@ import '@styles/globals.scss';
 import 'katex/dist/katex.css';
 import { AppProps } from 'next/app';
 import Layout from '@components/layput';
+import { RecoilRoot } from 'recoil';
 
 function App({ Component, pageProps }: AppProps): JSX.Element {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <RecoilRoot>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </RecoilRoot>
   );
 }
 
