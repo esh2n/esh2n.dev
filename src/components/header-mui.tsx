@@ -9,6 +9,8 @@ import {
   ListItemText,
   ListItemIcon,
   Typography,
+  ToggleButton,
+  ToggleButtonGroup,
   useScrollTrigger,
 } from '@mui/material';
 import { useState } from 'react';
@@ -20,12 +22,31 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import Header from '@components/header';
+import styled from '@emotion/styled';
 
 interface Props {
   window?: () => Window;
 }
 
-export default function PrimarySearchAppBar(props: Props) {
+const StyledImageWrapper = styled.img`
+  height: 40px;
+  margin: 16px 0;
+`;
+
+const UpperHeader = () => {
+  return (
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static">
+        <Toolbar>
+          <StyledImageWrapper src="/images/blog_dev.png" />
+        </Toolbar>
+      </AppBar>
+    </Box>
+  );
+};
+
+export default function Appbar(props: Props) {
   const { window } = props;
   const trigger = useScrollTrigger({
     disableHysteresis: true,
@@ -42,7 +63,8 @@ export default function PrimarySearchAppBar(props: Props) {
     setMobileMoreAnchorEl(null);
   };
 
-  const handleMobileMenuOpen = (event) => {
+  const handleMobileMenuOpen = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    console.log(event.currentTarget);
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
@@ -126,9 +148,10 @@ export default function PrimarySearchAppBar(props: Props) {
 
   return (
     <>
+      <UpperHeader />
       <AppBar position="sticky" color="inherit" className="appbar" elevation={trigger ? 4 : 0}>
         <Toolbar>
-          <Box sx={{ flexGrow: 1 }} />
+          <Box sx={{ flexGrow: 1 }}>{ToggleButtons()}</Box>
           <Box>
             <IconButton
               size="large"
@@ -137,13 +160,94 @@ export default function PrimarySearchAppBar(props: Props) {
               aria-haspopup="true"
               onClick={handleMobileMenuOpen}
               color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
+            ></IconButton>
           </Box>
         </Toolbar>
       </AppBar>
-      {renderMobileMenu}
     </>
+  );
+}
+
+const StyledToggleButtonWrapper = styled.div`
+  a {
+    display: flex;
+    align-items: center;
+  }
+`;
+
+function ToggleButtons() {
+  const { pathname } = useRouter();
+  const path = `/${pathname.split('/')[1].trim()}`;
+  const [alignment, setAlignment] = useState<string | null>(path);
+
+  const handleAlignment = (event: React.MouseEvent<HTMLElement>, newAlignment: string | null) => {
+    setAlignment(newAlignment);
+  };
+
+  const renderText = (path: string) => {
+    return (
+      <>
+        {path === alignment ? (
+          <Typography
+            color="text.secondary"
+            component="div"
+            sx={{
+              fontSize: '14px',
+              color: 'white',
+              verticalAlign: 'baseline',
+              paddingLeft: '8px',
+            }}
+          >
+            {handleStr(path.split('/')[1].toUpperCase())}
+          </Typography>
+        ) : (
+          <></>
+        )}
+      </>
+    );
+  };
+
+  const handleStr = (str: string) => {
+    if (str == '') return 'HOME';
+    if (str == 'POSTS') return 'BLOG';
+    if (str == 'SCRAPS') return 'NOTION';
+    return str;
+  };
+
+  return (
+    <StyledToggleButtonWrapper>
+      <ToggleButtonGroup
+        value={alignment}
+        exclusive
+        onChange={handleAlignment}
+        aria-label="text alignment"
+        sx={{ margin: '8px 0' }}
+      >
+        <ToggleButton value="/" aria-label="left aligned">
+          <Link href="/">
+            <a>
+              <HomeIcon fontSize="small" />
+              {renderText('/')}
+            </a>
+          </Link>
+        </ToggleButton>
+        <ToggleButton value="/posts" aria-label="centered">
+          <Link href="/posts">
+            <a>
+              <MenuBookIcon fontSize="small" />
+              {renderText('/posts')}
+            </a>
+          </Link>
+        </ToggleButton>
+        <ToggleButton value="/scraps" aria-label="right aligned">
+          <Link href="/scraps">
+            <a>
+              <FeedIcon fontSize="small" />
+              {renderText('/scraps')}
+            </a>
+          </Link>
+        </ToggleButton>
+      </ToggleButtonGroup>
+    </StyledToggleButtonWrapper>
   );
 }

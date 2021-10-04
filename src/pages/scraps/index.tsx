@@ -11,6 +11,7 @@ import PostCard from '@components/post-card';
 import { useRecoilState } from 'recoil';
 import { notionState } from '@atoms/blog';
 import { useEffect, useMemo } from 'react';
+import posts from 'pages/posts';
 
 export async function getStaticProps({ preview }) {
   const postsTable = await getBlogIndex();
@@ -54,6 +55,10 @@ const StyledPostsWrapper = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-gap: 30px;
   padding: 25px;
+  max-width: 1200px;
+  @media (max-width: 480px) {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
 `;
 
 interface Props {
@@ -64,12 +69,15 @@ const Index = ({ posts = [], preview }: Props) => {
   const [blog, setBlog] = useRecoilState(notionState);
   const notionPosts = useMemo(() => blog.posts, [blog.posts]) ?? posts;
 
-  useEffect(() => {
+  const init = () => {
     setBlog((state) => ({
       ...state,
       posts: posts,
     }));
-  });
+  };
+  useEffect(() => {
+    init();
+  }, [posts]);
 
   return (
     <>

@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 import { getAllPosts } from '@lib/markdown/getPosts';
 import PostCard from '@components/post-card';
 import { useRecoilState } from 'recoil';
-import { blogState } from '@atoms/blog';
+import { blogState, markDownState } from '@atoms/blog';
 
 interface Props {
   allPosts: MarkDownPost[];
@@ -14,23 +14,36 @@ interface Props {
 const StyledPostsWrapper = styled.div`
   display: grid;
   margin: 0 auto;
+  justify-content: center;
+
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-gap: 30px;
   padding: 25px;
   max-width: 1200px;
+  @media (max-width: 480px) {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
 `;
 
 const Posts = ({ allPosts }: Props) => {
-  const heroPost = allPosts[0];
-  const morePosts = allPosts.slice(1);
+  const [blog, setBlog] = useRecoilState(markDownState);
+  const markDownPosts = useMemo(() => blog.posts, [blog.posts]) ?? allPosts;
+
+  const init = () => {
+    setBlog((state) => ({
+      ...state,
+      posts: allPosts,
+    }));
+  };
   useEffect(() => {
-    import('@okra-ui/gradient-text');
-  }, []);
+    init();
+  }, [allPosts]);
+
   return (
     <>
-      {morePosts.length > 0 && (
+      {
         <StyledPostsWrapper>
-          {allPosts.map((post, index) => (
+          {markDownPosts.map((post, index) => (
             <div key={index}>
               <Link as={`/posts/${post.slug}`} href="/posts/[slug]">
                 <a className="hover:underline">
@@ -44,7 +57,7 @@ const Posts = ({ allPosts }: Props) => {
             </div>
           ))}
         </StyledPostsWrapper>
-      )}
+      }
     </>
   );
 };
