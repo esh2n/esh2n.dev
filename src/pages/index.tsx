@@ -35,11 +35,13 @@ const Hero = styled.article`
         font-weight: bold;
         color: #fff;
         font-size: calc(100vw / 30);
+        letter-spacing: 0.07em;
       }
 
       @media (min-width: 900px) {
         div {
           font-size: 30px;
+          letter-spacing: 0.1em;
         }
 
         width: 580px;
@@ -67,7 +69,7 @@ const Home: NextPage = () => {
 export default Home;
 
 const HeroSection = () => {
-  const roles = ['Frontend 💻', 'Backend 🌐', 'NativeApp 📱'];
+  const roles = ['Frontend💻', 'Backend🌐', 'NativeApp📱'];
   return (
     <Hero style={{ position: 'relative' }}>
       <Box
@@ -83,10 +85,9 @@ const HeroSection = () => {
             component="div"
             sx={{
               marginTop: '48px',
-              letterSpacing: '0.1em',
             }}
           >
-            <>As a {'< '}</>
+            As a &lt;
           </Typography>
           <TextLoop interval={10000}>
             {roles.map((text) => (
@@ -94,8 +95,7 @@ const HeroSection = () => {
                 component="div"
                 sx={{
                   marginTop: '48px',
-                  letterSpacing: '0.1em',
-                  padding: '0 10px',
+                  padding: '0 4px',
                 }}
               >
                 <>{text}</>
@@ -106,10 +106,9 @@ const HeroSection = () => {
             component="div"
             sx={{
               marginTop: '48px',
-              letterSpacing: '0.1em',
             }}
           >
-            <>{' >'} Engineer.</>
+            &gt; Engineer.
           </Typography>
         </Box>
       </Box>
