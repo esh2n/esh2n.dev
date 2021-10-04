@@ -16,13 +16,11 @@ import {
 import { useState } from 'react';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import FeedIcon from '@mui/icons-material/Feed';
-import MoreIcon from '@mui/icons-material/MoreVert';
 import HomeIcon from '@mui/icons-material/Home';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import Header from '@components/header';
 import styled from '@emotion/styled';
 
 interface Props {
@@ -55,96 +53,12 @@ export default function Appbar(props: Props) {
   });
 
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
-  const router = useRouter();
-
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
-  };
 
   const handleMobileMenuOpen = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    console.log(event.currentTarget);
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
   const mobileMenuId = 'primary-search-account-menu-mobile';
-
-  const renderMobileMenu = (
-    <>
-      <Menu
-        anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
-        id={mobileMenuId}
-        keepMounted
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
-        open={isMobileMenuOpen}
-        onClose={handleMobileMenuClose}
-      >
-        <MenuItem
-          onClick={() => {
-            router.replace('/');
-          }}
-        >
-          <ListItemIcon>
-            <HomeIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>Home</ListItemText>
-          <Typography variant="body2" color="text.secondary">
-            ⌘Z
-          </Typography>
-        </MenuItem>
-        <MenuItem
-          onClick={() => {
-            router.replace('/posts');
-          }}
-        >
-          <ListItemIcon>
-            <MenuBookIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>Blog</ListItemText>
-          <Typography variant="body2" color="text.secondary">
-            ⌘X
-          </Typography>
-        </MenuItem>
-        <MenuItem
-          onClick={() => {
-            router.replace('/scraps');
-          }}
-        >
-          <ListItemIcon>
-            <FeedIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>Notion</ListItemText>
-          <Typography variant="body2" color="text.secondary">
-            ⌘C
-          </Typography>
-        </MenuItem>
-        <Divider />
-        <Link href="https://github.com/esh2n">
-          <MenuItem>
-            <ListItemIcon>
-              <GitHubIcon fontSize="small" />
-            </ListItemIcon>
-            <ListItemText>GitHub　　　</ListItemText>
-          </MenuItem>
-        </Link>
-        <Link href="https://twitter.com/esh2n">
-          <MenuItem>
-            <ListItemIcon>
-              <TwitterIcon fontSize="small" />
-            </ListItemIcon>
-            <ListItemText>Twitter</ListItemText>
-          </MenuItem>
-        </Link>
-      </Menu>
-    </>
-  );
 
   return (
     <>
@@ -152,16 +66,7 @@ export default function Appbar(props: Props) {
       <AppBar position="sticky" color="inherit" className="appbar" elevation={trigger ? 4 : 0}>
         <Toolbar>
           <Box sx={{ flexGrow: 1 }}>{ToggleButtons()}</Box>
-          <Box>
-            <IconButton
-              size="large"
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            ></IconButton>
-          </Box>
+          <Box></Box>
         </Toolbar>
       </AppBar>
     </>
@@ -177,10 +82,35 @@ const StyledToggleButtonWrapper = styled.div`
 
 function ToggleButtons() {
   const { pathname } = useRouter();
+  const router = useRouter();
   const path = `/${pathname.split('/')[1].trim()}`;
+
   const [alignment, setAlignment] = useState<string | null>(path);
+  const [isHome, setHome] = useState<boolean>(false);
+  const [isPost, setPost] = useState<boolean>(false);
+  const [isScrap, setScrap] = useState<boolean>(false);
 
   const handleAlignment = (event: React.MouseEvent<HTMLElement>, newAlignment: string | null) => {
+    switch (newAlignment) {
+      case '/':
+        setHome(true);
+        setPost(false);
+        setScrap(false);
+        router.replace('/');
+        break;
+      case '/posts':
+        setHome(false);
+        setPost(true);
+        setScrap(false);
+        router.replace('/posts');
+        break;
+      case '/scraps':
+        setHome(false);
+        setPost(false);
+        setScrap(true);
+        router.replace('/scraps');
+        break;
+    }
     setAlignment(newAlignment);
   };
 
@@ -223,7 +153,7 @@ function ToggleButtons() {
         aria-label="text alignment"
         sx={{ margin: '8px 0' }}
       >
-        <ToggleButton value="/" aria-label="left aligned">
+        <ToggleButton value="/" aria-label="left aligned" selected={isHome}>
           <Link href="/">
             <a>
               <HomeIcon fontSize="small" />
@@ -231,7 +161,7 @@ function ToggleButtons() {
             </a>
           </Link>
         </ToggleButton>
-        <ToggleButton value="/posts" aria-label="centered">
+        <ToggleButton value="/posts" aria-label="centered" selected={isPost}>
           <Link href="/posts">
             <a>
               <MenuBookIcon fontSize="small" />
@@ -239,7 +169,7 @@ function ToggleButtons() {
             </a>
           </Link>
         </ToggleButton>
-        <ToggleButton value="/scraps" aria-label="right aligned">
+        <ToggleButton value="/scraps" aria-label="right aligned" selected={isScrap}>
           <Link href="/scraps">
             <a>
               <FeedIcon fontSize="small" />

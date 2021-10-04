@@ -35,10 +35,14 @@ specifiers:
   katex: ^0.13.18
   next: 11.1.2
   node-fetch: ^3.0.0
+  polished: ^4.1.3
   prettier: ^2.4.1
   prismjs: ^1.25.0
   react: 17.0.2
+  react-awesome-reveal: ^3.8.1
   react-dom: 17.0.2
+  react-scroll: ^1.8.4
+  react-text-loop: ^2.3.0
   recoil: ^0.4.1
   remark: ^14.0.1
   remark-html: ^14.0.1
@@ -71,9 +75,13 @@ dependencies:
   katex: 0.13.18
   next: 11.1.2_dda2c6382961d2b57087a288cd378b42
   node-fetch: 3.0.0
+  polished: 4.1.3
   prismjs: 1.25.0
   react: 17.0.2
+  react-awesome-reveal: 3.8.1_9b26932173ac5a93c18fc8634be19f05
   react-dom: 17.0.2_react@17.0.2
+  react-scroll: 1.8.4_react-dom@17.0.2+react@17.0.2
+  react-text-loop: 2.3.0_react-dom@17.0.2+react@17.0.2
   recoil: 0.4.1_react-dom@17.0.2+react@17.0.2
   remark: 14.0.1
   remark-html: 14.0.1
@@ -2453,6 +2461,10 @@ packages:
   /csstype/3.0.9:
     resolution: {integrity: sha512-rpw6JPxK6Rfg1zLOYCSwle2GFOOsnjmDYDaBwEcwoOg4qlsIVCN789VkBZDJAGi4T07gI4YSutR43t9Zz4Lzuw==}
 
+  /cxs/6.2.0:
+    resolution: {integrity: sha512-RGatb1BUwVMBzV8DRo9Kapc55bdGfAxMcukVk+ZzE3Ts8xaTve0GVz730kBDxjhEBU2LK+RPuAcjZb00Q3O24w==}
+    dev: false
+
   /damerau-levenshtein/1.0.7:
     resolution: {integrity: sha512-VvdQIPGdWP0SqFXghj79Wf/5LArmreyMsGLa6FG6iC4t3j7j5s71TrwWmT/4akbDQIqjfACkLZmjXhA7g2oUZw==}
     dev: true
@@ -3722,6 +3734,10 @@ packages:
     resolution: {integrity: sha1-7dFMgk4sycHgsKG0K7UhBRakJDg=}
     dev: false
 
+  /lodash.throttle/4.1.1:
+    resolution: {integrity: sha1-wj6RtxAkKscMN/HhzaknTMOb8vQ=}
+    dev: false
+
   /lodash.truncate/4.4.2:
     resolution: {integrity: sha1-WjUNoLERO4N+z//VgSy+WNbq4ZM=}
     dev: true
@@ -4434,6 +4450,14 @@ packages:
       sha.js: 2.4.11
     dev: false
 
+  /performance-now/0.2.0:
+    resolution: {integrity: sha1-M+8wxcd9TqIcWlOGnZG1bY8lVeU=}
+    dev: false
+
+  /performance-now/2.1.0:
+    resolution: {integrity: sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=}
+    dev: false
+
   /picomatch/2.3.0:
     resolution: {integrity: sha512-lY1Q/PiJGC2zOv/z391WOTD+Z02bCgsFfvxoXXf6h7kv9o+WmsmzYqrAwY63sNgOxE4xEdq0WyUnXfKeBrSvYw==}
     engines: {node: '>=8.6'}
@@ -4475,6 +4499,13 @@ packages:
       ts-pnp: 1.2.0_typescript@4.4.3
     transitivePeerDependencies:
       - typescript
+    dev: false
+
+  /polished/4.1.3:
+    resolution: {integrity: sha512-ocPAcVBUOryJEKe0z2KLd1l9EBa1r5mSwlKpExmrLzsnIzJo4axsoU9O2BjOTkDGDT4mZ0WFE5XKTlR3nLnZOA==}
+    engines: {node: '>=10'}
+    dependencies:
+      '@babel/runtime': 7.15.4
     dev: false
 
   /popmotion/9.3.6:
@@ -4585,6 +4616,12 @@ packages:
       inherits: 2.0.4
     dev: false
 
+  /raf/3.4.1:
+    resolution: {integrity: sha512-Sq4CW4QhwOHE8ucn6J34MqtZCeWFP2aQSmrlroYgqAV1PjStIhJXxYuTgUIfkEk7zTLjmIjLmU5q+fbD1NnOJA==}
+    dependencies:
+      performance-now: 2.1.0
+    dev: false
+
   /randombytes/2.1.0:
     resolution: {integrity: sha512-vYl3iOX+4CKUWuxGi9Ukhie6fsqXqS9FE2Zaic4tNFD2N2QQaXOMFbuKK4QmDHC0JO6B1Zp41J0LpT0oR68amQ==}
     dependencies:
@@ -4608,6 +4645,20 @@ packages:
       unpipe: 1.0.0
     dev: false
 
+  /react-awesome-reveal/3.8.1_9b26932173ac5a93c18fc8634be19f05:
+    resolution: {integrity: sha512-cB+XubgAa7QJ9ibkHePiVGTOzRKokqdDOP+yLfQtw5uu+xsAR/kwktLntMZev+1GBz2NhlcpbYvKqEbVIkKfLw==}
+    peerDependencies:
+      react: '>=16.14.0'
+    dependencies:
+      '@emotion/react': 11.4.1_9b26932173ac5a93c18fc8634be19f05
+      react: 17.0.2
+      react-intersection-observer: 8.32.1_react@17.0.2
+      react-is: 17.0.2
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@types/react'
+    dev: false
+
   /react-clientside-effect/1.2.5_react@17.0.2:
     resolution: {integrity: sha512-2bL8qFW1TGBHozGGbVeyvnggRpMjibeZM2536AKNENLECutp2yfs44IL8Hmpn8qjFQ2K7A9PnYf3vc7aQq/cPA==}
     peerDependencies:
@@ -4626,6 +4677,10 @@ packages:
       object-assign: 4.1.1
       react: 17.0.2
       scheduler: 0.20.2
+    dev: false
+
+  /react-fast-compare/2.0.4:
+    resolution: {integrity: sha512-suNP+J1VU1MWFKcyt7RtjiSWUjvidmQSlqu+eHslq+342xCbGTYmC0mEhPCOHxlW0CywylOC1u2DFAT+bv4dBw==}
     dev: false
 
   /react-fast-compare/3.2.0:
@@ -4648,11 +4703,30 @@ packages:
       - '@types/react'
     dev: false
 
+  /react-intersection-observer/8.32.1_react@17.0.2:
+    resolution: {integrity: sha512-FOmMkMw7MeJ8FkuADpU8TRcvGuTvPB+DRkaikS1QXcWArYLCWC3mjRorq2XeRGBuqmaueOBd27PUazTu9AgInw==}
+    peerDependencies:
+      react: ^15.0.0 || ^16.0.0 || ^17.0.0|| ^18.0.0
+    dependencies:
+      react: 17.0.2
+    dev: false
+
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
 
   /react-is/17.0.2:
     resolution: {integrity: sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==}
+    dev: false
+
+  /react-motion/0.5.2_react@17.0.2:
+    resolution: {integrity: sha512-9q3YAvHoUiWlP3cK0v+w1N5Z23HXMj4IF4YuvjvWegWqNPfLXsOBE/V7UvQGpXxHFKRQQcNcVQE31g9SB/6qgQ==}
+    peerDependencies:
+      react: ^0.14.9 || ^15.3.0 || ^16.0.0
+    dependencies:
+      performance-now: 0.2.0
+      prop-types: 15.7.2
+      raf: 3.4.1
+      react: 17.0.2
     dev: false
 
   /react-refresh/0.8.3:
@@ -4695,6 +4769,18 @@ packages:
       use-sidecar: 1.0.5_react@17.0.2
     dev: false
 
+  /react-scroll/1.8.4_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha512-J9rFqmdzularCXJoK2vleHVg2//y9Fs6zh7K13x7Yz3Y1kHPfQ/TTq029L09q1Gr5/5JjFLBOB2Sa3yYIqyTyQ==}
+    peerDependencies:
+      react: ^15.5.4 || ^16.0.0 || ^17.0.0
+      react-dom: ^15.5.4 || ^16.0.0 || ^17.0.0
+    dependencies:
+      lodash.throttle: 4.1.1
+      prop-types: 15.7.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
   /react-style-singleton/2.1.1_9b26932173ac5a93c18fc8634be19f05:
     resolution: {integrity: sha512-jNRp07Jza6CBqdRKNgGhT3u9umWvils1xsuMOjZlghBDH2MU0PL2WZor4PGYjXpnRCa9DQSlHMs/xnABWOwYbA==}
     engines: {node: '>=8.5.0'}
@@ -4710,6 +4796,19 @@ packages:
       invariant: 2.2.4
       react: 17.0.2
       tslib: 1.14.1
+    dev: false
+
+  /react-text-loop/2.3.0_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha512-tRLxdkhc1ojAICxERJNOWj3Ry7NIGmFQF4tR6cRVyL+5zVD+gj+8uGPvOgEBLuj2vmjTXLPvBMVVCnoAIy1+DA==}
+    peerDependencies:
+      react: ^15.0.1 || ^16.0.1
+      react-dom: ^15.0.1 || ^16.0.1
+    dependencies:
+      cxs: 6.2.0
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      react-fast-compare: 2.0.4
+      react-motion: 0.5.2_react@17.0.2
     dev: false
 
   /react-transition-group/4.4.2_react-dom@17.0.2+react@17.0.2:
