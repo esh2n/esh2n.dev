@@ -57,7 +57,7 @@ const StyledPostsWrapper = styled.div`
   padding: 25px;
   max-width: 1200px;
   @media (max-width: 480px) {
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
 `;
 
