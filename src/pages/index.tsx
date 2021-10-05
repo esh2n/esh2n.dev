@@ -66,7 +66,7 @@ const Home: NextPage = () => {
 export default Home;
 
 const HeroSection = () => {
-  const roles = ['Web Frontend💻', 'Web Backend🌐', 'Native Apps📱'];
+  const roles = ['Web Frontend💻', 'Web Backend🌐', 'iOS / Android📱'];
   return (
     <Hero style={{ position: 'relative' }}>
       <Box
