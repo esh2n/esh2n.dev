@@ -38,7 +38,7 @@ const Hero = styled.article`
       div {
         font-weight: bold;
         color: #fff;
-        font-size: calc(100vw / 30);
+        font-size: calc(100vw / 33);
         letter-spacing: 0.07em;
       }
 
