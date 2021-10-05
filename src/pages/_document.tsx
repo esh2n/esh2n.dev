@@ -7,9 +7,11 @@ interface DocumentInterface {
 }
 
 class MyDocument extends Document implements DocumentInterface {
-  url = 'https://esh2n-dev.vercel.ap';
+  url = 'https://esh2n.dev';
   title = 'esh2n.dev';
   description = "esh2n's tech blog";
+  imgWidth = 1200;
+  imgHeight = 630;
 
   render(): JSX.Element {
     return (
@@ -22,6 +24,10 @@ class MyDocument extends Document implements DocumentInterface {
           <meta property="og:url" content={this.url} />
           <meta property="og:description" content={this.description} />
           <meta property="og:site_name" content={this.title} />
+          <meta property="og:image" content={`${this.url}/images/og.png`} />
+          <meta name="twitter:image" content={`${this.url}/images/og.png`} />
+          <meta property="og:image:width" content={String(this.imgWidth)} />
+          <meta property="og:image:height" content={String(this.imgHeight)} />
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="format-detection" content="telephone=no" />
           <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
