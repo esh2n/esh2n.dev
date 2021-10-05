@@ -85,6 +85,14 @@ const SideProfile = ({}: Props) => {
   });
   return (
     <StyledSideWrapper className={scrolled ? 'scrolled' : ''}>
+      <InnerProfile />
+    </StyledSideWrapper>
+  );
+};
+
+const InnerProfile = () => {
+  return (
+    <>
       <div className="flex">
         <img src="https://avatars.githubusercontent.com/u/55518345?v=4" alt="avatar" />
         <div className="flex col">
@@ -100,7 +108,7 @@ const SideProfile = ({}: Props) => {
             </a>
           </div>
           <Spacer />
-          <span className="super-light">フロントエンジニア</span>
+          <span className="super-light">Webエンジニア</span>
         </div>
       </div>
       <Spacer className="lg" />
@@ -108,7 +116,7 @@ const SideProfile = ({}: Props) => {
       <p className="light">
         Elm Deno Rust Flutter が特に好きでなにか作っては壊してを繰り返しています。
       </p>
-    </StyledSideWrapper>
+    </>
   );
 };
 
