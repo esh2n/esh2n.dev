@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 import { getAllPosts } from '@lib/markdown/getPosts';
 import PostCard from '@components/post-card';
 import { useRecoilState } from 'recoil';
-import { blogState, countState, markDownState } from '@atoms/blog';
+import { blogState, markDownState } from '@atoms/blog';
 
 interface Props {
   allPosts: MarkDownPost[];
@@ -84,5 +84,6 @@ export async function getStaticProps() {
 
   return {
     props: { allPosts },
+    revalidate: 600,
   };
 }

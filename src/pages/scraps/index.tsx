@@ -9,11 +9,11 @@ import { NotionPost, NotionPosts } from 'types';
 import styled from '@emotion/styled';
 import PostCard from '@components/post-card';
 import { useRecoilState } from 'recoil';
-import { blogState, countState, notionState } from '@atoms/blog';
+import { blogState, notionState } from '@atoms/blog';
 import { useEffect, useMemo } from 'react';
 import { divideTagsToList } from '@lib/ogp/generateOgImageUrl';
 
-export async function getStaticProps({ preview }) {
+export async function getStaticProps() {
   const postsTable = await getBlogIndex();
 
   const authorsToGet: Set<string> = new Set();
@@ -42,10 +42,9 @@ export async function getStaticProps({ preview }) {
   );
   return {
     props: {
-      preview: preview || false,
       posts,
     },
-    revalidate: 10,
+    revalidate: 600,
   };
 }
 
@@ -63,9 +62,8 @@ const StyledPostsWrapper = styled.div`
 
 interface Props {
   posts?: NotionPosts;
-  preview?: boolean;
 }
-const Index = ({ posts = [], preview }: Props) => {
+const Index = ({ posts = [] }: Props) => {
   // const [blog, setBlog] = useRecoilState(blogState);
   const [notion, setNotion] = useRecoilState(notionState);
   const notionPosts = useMemo(() => notion.posts, [notion.posts]) ?? posts;
