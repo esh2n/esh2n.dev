@@ -20,7 +20,7 @@ export async function getStaticProps() {
   const posts: NotionPosts = Object.keys(postsTable)
     .map((slug) => {
       const post = postsTable[slug];
-      if (!preview && !postIsPublished(post)) {
+      if (!postIsPublished(post)) {
         return null;
       }
       post.Authors = post.Authors || [];
