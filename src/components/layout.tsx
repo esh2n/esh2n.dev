@@ -9,21 +9,27 @@ interface Props {
   title?: string;
 }
 
-const DisplayedPage = styled.div`
-  /* width: 80%;
-  margin: 0 auto;
-  padding: 2rem;
-  display: flex;
-  justify-content: center; */
-`;
+const DisplayedPage = styled.div``;
 
 const Layout: React.FC<Props> = ({ children }) => {
   const { pathname, query } = useRouter();
+  const handlePath = (path: string) => {
+    switch(path) {
+      case '/':
+        return 'Home';
+      case '/posts':
+        return 'Blog';
+      case '/scraps':
+        return 'Notion';
+      default:
+        return '404';
+    }
+  }
 
   return (
     <>
       <Head>
-        <title>{pathname === '/' ? 'HOME' : pathname.split('/')[1].toUpperCase()}</title>
+        <title>{handlePath(pathname) + ' | esh2n.dev'}</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <link

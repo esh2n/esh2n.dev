@@ -20,7 +20,6 @@ class MyDocument extends Document implements DocumentInterface {
           <meta name="description" content={this.description} />
           <meta name="theme-color" content="#333" />
           <meta property="og:type" content="website" />
-          <meta property="og:title" content={this.title} />
           <meta property="og:url" content={this.url} />
           <meta property="og:description" content={this.description} />
           <meta property="og:site_name" content={this.title} />

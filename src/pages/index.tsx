@@ -89,6 +89,7 @@ const HeroSection = () => {
           <TextLoop interval={10000}>
             {roles.map((text) => (
               <Typography
+                key={text}
                 component="div"
                 sx={{
                   marginTop: '48px',
