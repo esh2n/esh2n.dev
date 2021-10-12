@@ -9,9 +9,9 @@ import { NotionPost, NotionPosts } from 'types';
 import styled from '@emotion/styled';
 import PostCard from '@components/post-card';
 import { useRecoilState } from 'recoil';
-import { notionState } from '@atoms/blog';
+import { blogState, countState, notionState } from '@atoms/blog';
 import { useEffect, useMemo } from 'react';
-import posts from 'pages/posts';
+import { divideTagsToList } from '@lib/ogp/generateOgImageUrl';
 
 export async function getStaticProps({ preview }) {
   const postsTable = await getBlogIndex();
@@ -66,11 +66,12 @@ interface Props {
   preview?: boolean;
 }
 const Index = ({ posts = [], preview }: Props) => {
-  const [blog, setBlog] = useRecoilState(notionState);
-  const notionPosts = useMemo(() => blog.posts, [blog.posts]) ?? posts;
+  // const [blog, setBlog] = useRecoilState(blogState);
+  const [notion, setNotion] = useRecoilState(notionState);
+  const notionPosts = useMemo(() => notion.posts, [notion.posts]) ?? posts;
 
   const init = () => {
-    setBlog((state) => ({
+    setNotion((state) => ({
       ...state,
       posts: posts,
     }));
@@ -82,13 +83,20 @@ const Index = ({ posts = [], preview }: Props) => {
   return (
     <>
       <StyledPostsWrapper>
-        {notionPosts.map((post) => {
+        {notionPosts.map((post: NotionPost) => {
           return (
             <div key={post.Slug}>
               {!post.Published && <span className={blogStyles.draftBadge}>Draft</span>}
               <Link href="/scraps/[slug]" as={getBlogLink(post.Slug)}>
                 <a>
-                  <PostCard title={post.Page} emoji={post.Emoji} date={getDateStr(post.Date)} />
+                  <PostCard
+                    title={post.Page}
+                    emoji={post.Emoji}
+                    date={getDateStr(post.Date)}
+                    category={'NOTION'}
+                    color={post.ColorCode}
+                    tags={divideTagsToList(post.Tag)}
+                  />
                 </a>
               </Link>
             </div>

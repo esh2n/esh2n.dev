@@ -17,7 +17,7 @@ export interface MarkDownPost {
   coverImage?: string;
   excerpt?: string;
   tags?: string[];
-  category?: string;
+  categories?: string[];
   color?: string;
   emoji?: string;
 }

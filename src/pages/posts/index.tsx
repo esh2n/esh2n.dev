@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 import { getAllPosts } from '@lib/markdown/getPosts';
 import PostCard from '@components/post-card';
 import { useRecoilState } from 'recoil';
-import { blogState, markDownState } from '@atoms/blog';
+import { blogState, countState, markDownState } from '@atoms/blog';
 
 interface Props {
   allPosts: MarkDownPost[];
@@ -26,11 +26,12 @@ const StyledPostsWrapper = styled.div`
 `;
 
 const Posts = ({ allPosts }: Props) => {
-  const [blog, setBlog] = useRecoilState(markDownState);
-  const markDownPosts = useMemo(() => blog.posts, [blog.posts]) ?? allPosts;
+  // const [blog, setBlog] = useRecoilState(blogState);
+  const [md, setMd] = useRecoilState(markDownState);
+  const markDownPosts = useMemo(() => md.posts, [md.posts]) ?? allPosts;
 
   const init = () => {
-    setBlog((state) => ({
+    setMd((state) => ({
       ...state,
       posts: allPosts,
     }));
@@ -51,6 +52,9 @@ const Posts = ({ allPosts }: Props) => {
                     title={post.title}
                     emoji={post.emoji}
                     date={post.date.toString().split('-').join('/')}
+                    category={post.categories[0]}
+                    color={post.color}
+                    tags={post.tags}
                   />
                 </a>
               </Link>
@@ -73,6 +77,9 @@ export async function getStaticProps() {
     'coverImage',
     'excerpt',
     'emoji',
+    'categories',
+    'tags',
+    'color',
   ]);
 
   return {

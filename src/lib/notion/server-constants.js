@@ -14,10 +14,8 @@ const normalizeId = (id) => {
   )}`;
 };
 
-const NOTION_TOKEN = String(
-  '375a665e6a299fc862a353fa52d88c15ce4df7cfbcd980a1954d5a1158271d032b6cf64f310bc2b0e4f37e0f703a6d221fe57f687d07a900b06e36ad5506576543b802f07cdf738fc6ad8af65fc4',
-);
-const BLOG_INDEX_ID = normalizeId('354d8b0a54cc473eb846cfa1a896c762');
+const NOTION_TOKEN = process.env.NOTION_TOKEN;
+const BLOG_INDEX_ID = normalizeId(process.env.BLOG_INDEX_ID);
 const API_ENDPOINT = 'https://www.notion.so/api/v3';
 const BLOG_INDEX_CACHE = path.resolve('.blog_index_data');
 

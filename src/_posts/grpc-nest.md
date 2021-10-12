@@ -7,8 +7,8 @@ author:
   name: 'esh2n'
   picture: 'https://avatars.githubusercontent.com/u/55518345?v=4'
 tags:
+  - NestJS
   - gRPC
-  - NestJs
   - Node.js
   - TypeScript
 categories:
