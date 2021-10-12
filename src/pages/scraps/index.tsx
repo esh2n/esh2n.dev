@@ -9,7 +9,7 @@ import { NotionPost, NotionPosts } from 'types';
 import styled from '@emotion/styled';
 import PostCard from '@components/post-card';
 import { useRecoilState } from 'recoil';
-import { blogState, countState, notionState } from '@atoms/blog';
+import { blogState, notionState } from '@atoms/blog';
 import { useEffect, useMemo } from 'react';
 import { divideTagsToList } from '@lib/ogp/generateOgImageUrl';
 
