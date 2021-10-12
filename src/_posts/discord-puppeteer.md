@@ -7,9 +7,9 @@ author:
   name: 'esh2n'
   picture: 'https://avatars.githubusercontent.com/u/55518345?v=4'
 tags:
+  - Puppeteer
   - TypeScript
   - Discord.js
-  - Puppeteer
 categories:
   - DEV
 color: '#40B5A4'

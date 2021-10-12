@@ -17,9 +17,9 @@ export const generateOgImageUrlByNotion = (post: NotionPost) => {
   )}`;
 };
 
-function divideTagsToList(tags: string) {
+export const divideTagsToList = (tags: string) => {
   return tags.split(',');
-}
+};
 
 function generateJoinedTagsString(tags: string[]) {
   return tags.join('/');
