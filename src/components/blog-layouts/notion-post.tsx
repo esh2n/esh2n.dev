@@ -2,13 +2,13 @@ import React, { useEffect, CSSProperties } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import ReactJSXParser from '@zeit/react-jsx-parser';
-import Heading from '@components/heading';
-import components from '@components/dynamic';
+import Heading from '@components/blog-parts/heading';
+import components from '@components/blog-parts/dynamic';
 import { textBlock } from '@lib/notion/renderers';
 import { NotionPost } from 'types';
 import blogStyles from '@styles/blog.module.scss';
 import styled from '@emotion/styled';
-import PostTitle from '@components/post-title';
+import PostTitle from '@components/blog-layouts/post-title';
 import { getDateStr } from '@lib/blog-helpers';
 import NextHead from 'next/head';
 
@@ -284,9 +284,11 @@ const NotionPostBody = ({ post, redirect, preview, ogImageUrl }: Props) => {
                     </div>
                     <div className={blogStyles.bookmarkCoverWrapper1}>
                       <div className={blogStyles.bookmarkCoverWrapper2}>
-                        <div className={blogStyles.bookmarkCoverWrapper3}>
-                          <img src={cover} className={blogStyles.bookmarkCover} />
-                        </div>
+                        {cover && (
+                          <div className={blogStyles.bookmarkCoverWrapper3}>
+                            <img src={cover} className={blogStyles.bookmarkCover} />
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>

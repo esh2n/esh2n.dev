@@ -3,12 +3,11 @@ import getPageData from '@lib/notion/getPageData';
 import getBlogIndex from '@lib/notion/getBlogIndex';
 import getNotionUsers from '@lib/notion/getNotionUsers';
 import { getBlogLink, getDateStr } from '@lib/blog-helpers';
-import NotionPostBody from '@components/notion-post';
+import NotionPostBody from '@components/blog-layouts/notion-post';
 import styled from '@emotion/styled';
 import { Tweet, NotionPost } from 'types';
-import SideProfile from '@components/side-profile';
+import SideProfile from '@components/blog-layouts/side-profile';
 import { generateOgImageUrlByNotion } from '@lib/ogp/generateOgImageUrl';
-import NextHead from 'next/head';
 
 type Props = {
   post?: NotionPost;
@@ -52,7 +51,7 @@ export async function getStaticProps({ params: { slug }, preview }) {
         redirect: '/scraps',
         preview: false,
       },
-      revalidate: 5, // wait 5s as ssg
+      revalidate: 600,
     };
   }
   const postData = await getPageData(post.id);

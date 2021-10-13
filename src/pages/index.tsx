@@ -1,14 +1,14 @@
 import { NextPage } from 'next';
 import styled from '@emotion/styled';
-import { css, jsx } from '@emotion/react';
+import { css } from '@emotion/react';
 import Image from 'next/image';
 import logo from '/public/images/blog_dev.png';
-import ScrollIcon from '@components/ScrollIcon';
 import TextLoop from 'react-text-loop';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ScrollIcon from '@components/sections/scroll-icon';
 
 const TwitterIcon = () => <FontAwesomeIcon icon={faTwitter} size="lg" />;
 const GithubIcon = () => <FontAwesomeIcon icon={faGithub} size="lg" />;

@@ -1,4 +1,4 @@
-import ExtLink from './ext-link'
+import ExtLink from './blog-parts/ext-link';
 
 export default function Footer() {
   return (
@@ -14,12 +14,9 @@ export default function Footer() {
           />
         </ExtLink>
         <span>
-          or{' '}
-          <ExtLink href="https://github.com/ijjk/notion-blog">
-            view source
-          </ExtLink>
+          or <ExtLink href="https://github.com/ijjk/notion-blog">view source</ExtLink>
         </span>
       </footer>
     </>
-  )
+  );
 }

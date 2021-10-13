@@ -3,7 +3,7 @@ import { useEffect, useMemo } from 'react';
 import { MarkDownPost } from 'types';
 import styled from '@emotion/styled';
 import { getAllPosts } from '@lib/markdown/getPosts';
-import PostCard from '@components/post-card';
+import PostCard from '@components/blog-layouts/post-card';
 import { useRecoilState } from 'recoil';
 import { blogState, markDownState } from '@atoms/blog';
 

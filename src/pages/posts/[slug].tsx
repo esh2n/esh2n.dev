@@ -8,9 +8,9 @@ import markdownToHtml from '@lib/markdown/markdownToHtml';
 import { generateOgImageUrlByPost } from '@lib/ogp/generateOgImageUrl';
 //
 import styled from '@emotion/styled';
-import PostTitle from '@components/post-title';
-import PostBody from '@components/post-body';
-import SideProfile from '@components/side-profile';
+import PostTitle from '@components/blog-layouts/post-title';
+import PostBody from '@components/blog-layouts/post-body';
+import SideProfile from '@components/blog-layouts/side-profile';
 
 interface Props {
   post: MarkDownPost;
@@ -96,6 +96,7 @@ export async function getStaticProps({ params }) {
       },
       ogImageUrl,
     },
+    revalidate: 600,
   };
 }
 
