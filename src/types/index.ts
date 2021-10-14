@@ -1,5 +1,5 @@
 // Post
-type Post = MarkDownPost | NotionPost;
+export type Post = MarkDownPost | NotionPost;
 
 export type Posts = Post[];
 
@@ -8,6 +8,11 @@ export type BlogState = {
 };
 
 // MarkDownPost
+
+export const isMarkDownPost = (arg: any): arg is MarkDownPost => {
+  return arg.title !== undefined;
+};
+
 export interface MarkDownPost {
   title?: string;
   date?: Date;
@@ -37,6 +42,31 @@ export const isAuthor = (params: unknown): params is Author => {
 };
 
 // Notion
+
+export const isNotionPost = (arg: any): arg is NotionPost => {
+  return arg.id !== undefined;
+};
+
+export type NotionPost = {
+  id: string;
+  Authors: string[];
+  Slug: string;
+  Published: 'Yes' | 'No';
+  Date: number;
+  Page: string;
+  Emoji?: string;
+  Tag: string;
+  ColorCode: string;
+  preview: unknown[][];
+  content: PostContent[];
+  hasTweet: boolean;
+};
+
+export type NotionPosts = NotionPost[];
+
+export type NotionBlogState = {
+  posts: NotionPosts;
+};
 
 type PostContentValue = {
   alive: boolean;
@@ -73,27 +103,6 @@ type PostContentValue = {
 type PostContent = {
   role: string;
   value: PostContentValue;
-};
-
-export type NotionPost = {
-  id: string;
-  Authors: string[];
-  Slug: string;
-  Published: 'Yes' | 'No';
-  Date: number;
-  Page: string;
-  Emoji?: string;
-  Tag: string;
-  ColorCode: string;
-  preview: unknown[][];
-  content: PostContent[];
-  hasTweet: boolean;
-};
-
-export type NotionPosts = NotionPost[];
-
-export type NotionBlogState = {
-  posts: NotionPosts;
 };
 
 export interface Tweet {

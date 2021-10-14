@@ -10,6 +10,22 @@ export const getDateStr = (date) => {
   });
 };
 
+export const getDateStrByMd = (date) => {
+  return new Date(date.toString().split('-').join('/')).toLocaleString('ja-JP', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  });
+};
+
+export const getDateNum = (date) => {
+  return new Date(date).getTime();
+};
+
+export const getDateNumByMd = (date) => {
+  return new Date(date.toString().split('-').join('/')).getTime();
+};
+
 export const postIsPublished = (post: any) => {
   return post.Published === 'Yes';
 };

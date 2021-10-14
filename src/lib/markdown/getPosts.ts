@@ -1,7 +1,7 @@
 import fs from 'fs';
 import { join } from 'path';
 import matter from 'gray-matter';
-import { Author, isAuthor, MarkDownPost } from 'types';
+import { Author, isAuthor, MarkDownPost, MarkDownPosts } from 'types';
 
 const postsDirectory = join(process.cwd(), 'src/_posts');
 
@@ -36,7 +36,7 @@ export function getPostBySlug(slug: string, fields = []): MarkDownPost {
   return items as MarkDownPost;
 }
 
-export function getAllPosts(fields = []): MarkDownPost[] {
+export function getAllPosts(fields = []): MarkDownPosts {
   const slugs = getPostSlugs();
   const posts = slugs
     .map((slug) => getPostBySlug(slug, fields))

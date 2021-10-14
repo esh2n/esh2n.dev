@@ -2,12 +2,6 @@ import {
   AppBar,
   Box,
   Toolbar,
-  IconButton,
-  MenuItem,
-  Menu,
-  Divider,
-  ListItemText,
-  ListItemIcon,
   Typography,
   ToggleButton,
   ToggleButtonGroup,
@@ -17,8 +11,6 @@ import { useState } from 'react';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import FeedIcon from '@mui/icons-material/Feed';
 import HomeIcon from '@mui/icons-material/Home';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import TwitterIcon from '@mui/icons-material/Twitter';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import styled from '@emotion/styled';

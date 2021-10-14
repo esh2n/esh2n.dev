@@ -1,25 +1,26 @@
-import ExtLink from './ext-link'
+import styled from '@emotion/styled';
 
 export default function Footer() {
   return (
-    <>
+    <Wrapper>
       <footer>
-        <span>Deploy your own!</span>
-        <ExtLink href="https://vercel.com/new/git/external?repository-url=https://github.com/ijjk/notion-blog/tree/main&project-name=notion-blog&repository-name=notion-blog">
-          <img
-            src="https://vercel.com/button"
-            height={46}
-            width={132}
-            alt="deploy to Vercel button"
-          />
-        </ExtLink>
-        <span>
-          or{' '}
-          <ExtLink href="https://github.com/ijjk/notion-blog">
-            view source
-          </ExtLink>
-        </span>
+        <p className="light">esh2n.dev ©2021</p>
       </footer>
-    </>
-  )
+    </Wrapper>
+  );
 }
+
+const Wrapper = styled.article`
+  /* padding: 100px 0px 50px 0px;
+  margin: 0 auto;
+  margin-top: -50px; */
+  .light {
+    font-weight: 500;
+    font-size: 20px;
+    color: #fff;
+    /* padding: 0px 16px 4px 0px; */
+  }
+
+  background-color: #4c5464;
+  border-top: 20px solid #2e343f;
+`;
