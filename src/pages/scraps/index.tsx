@@ -1,10 +1,8 @@
 import Link from 'next/link';
 
-import blogStyles from '../../styles/blog.module.scss';
-
-import { getBlogLink, getDateStr, postIsPublished } from '../../lib/blog-helpers';
-import getNotionUsers from '../../lib/notion/getNotionUsers';
-import getBlogIndex from '../../lib/notion/getBlogIndex';
+import { getBlogLink, getDateStr, postIsPublished } from '@lib/blog-helpers';
+import getNotionUsers from '@lib/notion/getNotionUsers';
+import getBlogIndex from '@lib/notion/getBlogIndex';
 import { NotionPost, NotionPosts } from 'types';
 import styled from '@emotion/styled';
 import PostCard from '@components/blog-layouts/post-card';
@@ -84,7 +82,6 @@ const Index = ({ posts = [] }: Props) => {
         {notionPosts.map((post: NotionPost) => {
           return (
             <div key={post.Slug}>
-              {!post.Published && <span className={blogStyles.draftBadge}>Draft</span>}
               <Link href="/scraps/[slug]" as={getBlogLink(post.Slug)}>
                 <a>
                   <PostCard

@@ -8,7 +8,7 @@ import { useRecoilState } from 'recoil';
 import { blogState, markDownState } from '@atoms/blog';
 
 interface Props {
-  allPosts: MarkDownPost[];
+  posts: MarkDownPost[];
 }
 
 const StyledPostsWrapper = styled.div`
@@ -25,20 +25,20 @@ const StyledPostsWrapper = styled.div`
   }
 `;
 
-const Posts = ({ allPosts }: Props) => {
+const Posts = ({ posts }: Props) => {
   // const [blog, setBlog] = useRecoilState(blogState);
   const [md, setMd] = useRecoilState(markDownState);
-  const markDownPosts = useMemo(() => md.posts, [md.posts]) ?? allPosts;
+  const markDownPosts = useMemo(() => md.posts, [md.posts]) ?? posts;
 
   const init = () => {
     setMd((state) => ({
       ...state,
-      posts: allPosts,
+      posts: posts,
     }));
   };
   useEffect(() => {
     init();
-  }, [allPosts]);
+  }, [posts]);
 
   return (
     <>
@@ -69,7 +69,7 @@ const Posts = ({ allPosts }: Props) => {
 export default Posts;
 
 export async function getStaticProps() {
-  const allPosts = getAllPosts([
+  const posts = getAllPosts([
     'title',
     'date',
     'slug',
@@ -83,7 +83,7 @@ export async function getStaticProps() {
   ]);
 
   return {
-    props: { allPosts },
+    props: { posts },
     revalidate: 600,
   };
 }

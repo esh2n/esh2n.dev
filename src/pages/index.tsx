@@ -1,237 +1,85 @@
 import { NextPage } from 'next';
-import styled from '@emotion/styled';
-import { css } from '@emotion/react';
-import Image from 'next/image';
-import logo from '/public/images/blog_dev.png';
-import TextLoop from 'react-text-loop';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import { faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import ScrollIcon from '@components/sections/scroll-icon';
+import { isMarkDownPost, MarkDownPosts, NotionPost, NotionPosts, Posts } from 'types';
+import { getDateNum, getDateNumByMd, postIsPublished } from '@lib/blog-helpers';
+import getBlogIndex from '@lib/notion/getBlogIndex';
+import getNotionUsers from '@lib/notion/getNotionUsers';
+import { getAllPosts } from '@lib/markdown/getPosts';
+import HeroSection from '@components/sections/hero';
+import AboutSection from '@components/sections/about';
+import PostsSection from '@components/sections/posts';
 
-const TwitterIcon = () => <FontAwesomeIcon icon={faTwitter} size="lg" />;
-const GithubIcon = () => <FontAwesomeIcon icon={faGithub} size="lg" />;
+interface Props {
+  posts: Posts;
+}
 
-const sectionBase = css`
-  width: 100vw;
-`;
-
-const Hero = styled.article`
-  ${sectionBase}
-  height: calc(100vh - 150px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #4c5464;
-  img {
-    filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.6));
-    width: 65vw;
-    @media (min-width: 900px) {
-      width: 580px;
-    }
-  }
-  .text-loop {
-    filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.6));
-    &__text {
-      width: 65vw;
-      div {
-        font-weight: bold;
-        color: #fff;
-        font-size: calc(100vw / 33);
-        letter-spacing: 0.07em;
-      }
-
-      @media (min-width: 900px) {
-        div {
-          font-size: 30px;
-          letter-spacing: 0.1em;
-        }
-
-        width: 580px;
-      }
-    }
-  }
-`;
-
-const Home: NextPage = () => {
+const Home = ({ posts }: Props) => {
   return (
     <>
       <HeroSection />
       <AboutSection />
+      <PostsSection posts={posts} />
     </>
   );
 };
 
 export default Home;
 
-const HeroSection = () => {
-  const roles = ['Web Frontend💻', 'Web Backend🌐', 'iOS / Android📱'];
-  return (
-    <Hero style={{ position: 'relative' }}>
-      <Box
-        className="text-loop"
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-        }}
-      >
-        <Image src={logo} />
-        <Box className="text-loop__text" sx={{ display: 'flex', justifyContent: 'center' }}>
-          <Typography
-            component="div"
-            sx={{
-              marginTop: '48px',
-            }}
-          >
-            As a &lt;
-          </Typography>
-          <TextLoop interval={10000}>
-            {roles.map((text) => (
-              <Typography
-                key={text}
-                component="div"
-                sx={{
-                  marginTop: '48px',
-                  padding: '0 4px',
-                }}
-              >
-                <>{text}</>
-              </Typography>
-            ))}
-          </TextLoop>
-          <Typography
-            component="div"
-            sx={{
-              marginTop: '48px',
-            }}
-          >
-            &gt; Engineer.
-          </Typography>
-        </Box>
-      </Box>
-      <ScrollIcon to="about" />
-    </Hero>
-  );
-};
+export async function getStaticProps() {
+  const notionPostsTable = await getBlogIndex();
+  const authorsToGet: Set<string> = new Set();
+  const notionPosts: NotionPosts = Object.keys(notionPostsTable)
+    .map((slug) => {
+      const notionPost = notionPostsTable[slug];
+      if (!postIsPublished(notionPost)) {
+        return null;
+      }
+      notionPost.Authors = notionPost.Authors || [];
+      for (const author of notionPost.Authors) {
+        authorsToGet.add(author);
+      }
+      return notionPost;
+    })
+    .filter(Boolean);
 
-const About = styled.article`
-  ${sectionBase}
-  display: flex;
-  padding: 50px 16px 25px 16px;
+  const { users } = await getNotionUsers([...authorsToGet]);
 
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #2e343f;
-  color: #fff;
-  @media (min-width: 650px) {
-    flex-direction: row;
-    padding: 150px 0 100px 0;
-  }
-  .inner-profile {
-    width: 300px;
-  }
-  img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50px;
-    margin-right: 16px;
-    transition: border-radius 300ms 0s ease;
-    &:hover {
-      border-radius: 10px;
+  notionPosts.map((post: NotionPost) => {
+    post.Authors = post.Authors.map((id) => users[id].full_name);
+  });
+
+  const markdownPosts: MarkDownPosts = getAllPosts([
+    'title',
+    'date',
+    'slug',
+    'author',
+    'coverImage',
+    'excerpt',
+    'emoji',
+    'categories',
+    'tags',
+    'color',
+  ]);
+
+  const posts: Posts = [...notionPosts, ...markdownPosts];
+  posts.sort((prev, next) => {
+    const isPrevMd = isMarkDownPost(prev);
+    const isNextMd = isMarkDownPost(next);
+    if (isPrevMd && isNextMd) {
+      return getDateNumByMd(prev.date) > getDateNumByMd(next.date) ? -1 : 1;
     }
-  }
-  .flex {
-    display: flex;
-  }
-  .col {
-    flex-direction: column;
-  }
-  span {
-    font-size: 20px;
-  }
-  .icon {
-    font-size: 20px;
-  }
-  svg {
-    color: #5e6572;
-  }
-  .light {
-    font-weight: 500;
-    font-size: 18px;
-    color: #fff;
-  }
-  .super-light {
-    font-size: 16px;
-  }
-  &.scrolled {
-    position: sticky;
-    right: 0;
-    top: 96px;
-  }
-`;
+    if (!isPrevMd && !isNextMd) {
+      return getDateNum(prev.Date) > getDateNum(next.Date) ? -1 : 1;
+    }
+    if (isPrevMd && !isNextMd) {
+      return getDateNumByMd(prev.date) > getDateNum(next.Date) ? -1 : 1;
+    }
+    if (!isPrevMd && isNextMd) {
+      return getDateNum(prev.Date) > getDateNumByMd(next.date) ? -1 : 1;
+    }
+  });
 
-const AboutSection = () => {
-  return (
-    <About id="about" style={{ position: 'relative' }}>
-      <InnerProfile />
-      <Spacer />
-      <RightProfile />
-    </About>
-  );
-};
-
-const Spacer = styled.div`
-  width: 8px;
-  height: 6px;
-  &.lg {
-    height: 18px;
-  }
-`;
-
-export const InnerProfile = () => {
-  return (
-    <div className="inner-profile">
-      <div className="flex">
-        <img src="https://avatars.githubusercontent.com/u/55518345?v=4" alt="avatar" />
-        <div className="flex col">
-          <span>Shunya ENDO</span>
-          <Spacer />
-          <div className="flex icon">
-            <a href="https://twitter.com/esh2n">
-              <TwitterIcon />
-            </a>
-            <Spacer />
-            <a href="https://github.com/esh2n">
-              <GithubIcon />
-            </a>
-          </div>
-          <Spacer />
-          <span className="super-light">he/him, 23 y.o.</span>
-        </div>
-      </div>
-      <Spacer className="lg" />
-      <span className="super-light">Web・ネイティブアプリエンジニア</span>
-
-      <p className="light"></p>
-      <span className="light">好奇心の赴くままに、広く深く学んでいきます。</span>
-      <p className="light">
-        Elm Deno Rust Flutter が特に好きでなにか作っては壊してを繰り返しています。
-      </p>
-    </div>
-  );
-};
-
-export const RightProfile = () => {
-  return (
-    <div className="inner-profile">
-      <span className="light">
-        技術による問題解決に興味があり、ユーザーのニーズに最大限答えるものを大事にしたいという気持ちの反面、自分の好きなものを深めたいという技術者のジレンマを抱えています。
-      </span>
-      <p className="light">
-        興味の幅はかなり広い方で、時間が許すのであれば何でも学びたいと思っていますが、現在はWebのフロントエンド、バックエンド、ネイティブアプリケーション開発に注力しております。
-      </p>
-    </div>
-  );
-};
+  return {
+    props: { posts },
+    revalidate: 600,
+  };
+}

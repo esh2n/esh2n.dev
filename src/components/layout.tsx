@@ -2,8 +2,9 @@ import { ThemeProvider } from '@emotion/react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React from 'react';
-import PrimarySearchAppBar from '@components/header';
+import Header from '@components/header';
 import styled from '@emotion/styled';
+import Footer from './footer';
 
 interface Props {
   title?: string;
@@ -37,11 +38,11 @@ const Layout: React.FC<Props> = ({ children }) => {
           rel="stylesheet"
         />
       </Head>
-      <PrimarySearchAppBar />
-
+      <Header />
       <DisplayedPage>
         <>{children}</>
       </DisplayedPage>
+      <Footer />
     </>
   );
 };
