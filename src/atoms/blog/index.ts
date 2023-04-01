@@ -1,5 +1,5 @@
 import { atom } from 'recoil';
-import { BlogState, MarkDownBlogState, NotionBlogState } from 'types';
+import { BlogState, MarkDownBlogState, NotionAPIBlogState, NotionBlogState } from 'types';
 
 const initialState: BlogState = {
   posts: null,
@@ -10,6 +10,10 @@ const initialMarkDownState: MarkDownBlogState = {
 };
 
 const initialNotionState: NotionBlogState = {
+  posts: null,
+};
+
+const initialNotionAPIState: NotionAPIBlogState = {
   posts: null,
 };
 
@@ -26,4 +30,14 @@ export const markDownState = atom({
 export const notionState = atom({
   key: 'notion',
   default: initialNotionState,
+});
+
+export const notionAPIState = atom({
+  key: 'notion-api',
+  default: initialNotionAPIState,
+});
+
+export const inViewHeadingIdsAtom = atom<string[]>({
+  key: 'inViewHeadingAtom',
+  default: [],
 });

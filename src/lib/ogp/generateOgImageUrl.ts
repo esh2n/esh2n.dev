@@ -1,4 +1,4 @@
-import { NotionPost, MarkDownPost } from 'types';
+import { NotionPost, MarkDownPost, NotionAPIPostWithChildren, NotionAPIPost } from 'types';
 
 export const generateOgImageUrlByPost = (post: MarkDownPost) => {
   const baseUrl = process.env.OGP_URL;
@@ -8,12 +8,12 @@ export const generateOgImageUrlByPost = (post: MarkDownPost) => {
   )}`;
 };
 
-export const generateOgImageUrlByNotion = (post: NotionPost) => {
+export const generateOgImageUrlByNotionAPI = (post: NotionAPIPost) => {
   const baseUrl = process.env.OGP_URL;
-  const tags = generateJoinedTagsString(divideTagsToList(post.Tag));
-  const body = 'Notionからのメモ';
-  return `${baseUrl}/api/og/${tags}/?title=${post.Page}&body=${body}&color=${generateColor(
-    post.ColorCode,
+  const tags = generateJoinedTagsString(post.tags);
+  const body = 'Notionからの投稿です。';
+  return `${baseUrl}/api/og/${tags}/?title=${post.title}&body=${body}&color=${generateColor(
+    post.colorCode,
   )}`;
 };
 

@@ -26,7 +26,6 @@ const StyledPostsWrapper = styled.div`
 `;
 
 const Posts = ({ posts }: Props) => {
-  // const [blog, setBlog] = useRecoilState(blogState);
   const [md, setMd] = useRecoilState(markDownState);
   const markDownPosts = useMemo(() => md.posts, [md.posts]) ?? posts;
 
@@ -84,6 +83,6 @@ export async function getStaticProps() {
 
   return {
     props: { posts },
-    revalidate: 600,
+    revalidate: 60 * 60 * 24, // 1日
   };
 }

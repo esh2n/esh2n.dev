@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 import ScrollIcon from '@components/sections/scroll-icon';
 
 const HeroSection = () => {
-  const roles = ['Web Frontend💻', 'Web Backend🌐', 'iOS / Android📱'];
+  const roles = ['Web Frontend💻', 'Web Backend🌐', 'iOS / Android📱', 'Blockchain⛓'];
   return (
     <Hero style={{ position: 'relative' }}>
       <Box

@@ -10,7 +10,10 @@ interface Props {
   title?: string;
 }
 
-const DisplayedPage = styled.div``;
+const DisplayedPage = styled.div`
+  min-height: 100vh;
+}
+`;
 
 const Layout: React.FC<Props> = ({ children }) => {
   const { pathname, query } = useRouter();
@@ -20,7 +23,7 @@ const Layout: React.FC<Props> = ({ children }) => {
         return 'Home';
       case '/posts':
         return 'Blog';
-      case '/scraps':
+      case '/notion':
         return 'Notion';
       default:
         return '404';

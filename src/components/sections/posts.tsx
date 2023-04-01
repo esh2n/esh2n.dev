@@ -2,8 +2,7 @@ import styled from '@emotion/styled';
 import { Posts, Post, isMarkDownPost } from 'types';
 import Link from 'next/link';
 import PostCard from '@components/blog-layouts/post-card';
-import { getBlogLink, getDateStr } from '@lib/blog-helpers';
-import { divideTagsToList } from '@lib/ogp/generateOgImageUrl';
+import { getDateStr } from '@lib/blog-helpers';
 
 interface Props {
   posts: Posts;
@@ -25,7 +24,7 @@ const PostsSection = ({ posts }: Props) => {
                       title={post.title}
                       emoji={post.emoji}
                       date={post.date.toString().split('-').join('/')}
-                      category={post.categories[0]}
+                      category={'Blog'}
                       color={post.color}
                       tags={post.tags}
                     />
@@ -33,16 +32,16 @@ const PostsSection = ({ posts }: Props) => {
                 </Link>
               </div>
             ) : (
-              <div key={post.Slug}>
-                <Link href="/scraps/[slug]" as={getBlogLink(post.Slug)}>
+              <div key={post.id}>
+                <Link href="/notion/[slug]" as={`/notion/${post.id}`}>
                   <a>
                     <PostCard
-                      title={post.Page}
-                      emoji={post.Emoji}
-                      date={getDateStr(post.Date)}
+                      title={post.title}
+                      emoji={post.icon}
+                      date={getDateStr(post.date)}
                       category={'NOTION'}
-                      color={post.ColorCode}
-                      tags={divideTagsToList(post.Tag)}
+                      color={post.colorCode}
+                      tags={post.tags}
                     />
                   </a>
                 </Link>

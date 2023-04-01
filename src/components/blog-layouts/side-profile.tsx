@@ -108,7 +108,7 @@ const InnerProfile = () => {
             </a>
           </div>
           <Spacer />
-          <span className="super-light">Webエンジニア</span>
+          <span className="super-light">エンジニア</span>
         </div>
       </div>
       <Spacer className="lg" />

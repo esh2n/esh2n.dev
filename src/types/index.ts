@@ -1,5 +1,5 @@
 // Post
-export type Post = MarkDownPost | NotionPost;
+export type Post = MarkDownPost | NotionAPIPost;
 
 export type Posts = Post[];
 
@@ -10,7 +10,7 @@ export type BlogState = {
 // MarkDownPost
 
 export const isMarkDownPost = (arg: any): arg is MarkDownPost => {
-  return arg.title !== undefined;
+  return arg.emoji !== undefined;
 };
 
 export interface MarkDownPost {
@@ -134,3 +134,76 @@ interface RecordMap {
 interface Cursor {
   stack: any;
 }
+
+// Notion-API
+
+import type {
+  BlockObjectResponse,
+  CommentObjectResponse,
+  CreateCommentParameters,
+  DatabaseObjectResponse,
+  ListCommentsResponse,
+  PageObjectResponse,
+  RichTextItemResponse,
+} from '@notionhq/client/build/src/api-endpoints';
+
+/* Replace */
+export type NotionDatabaseObjectResponse = DatabaseObjectResponse;
+export type NotionPageObjectResponse = PageObjectResponse;
+export type NotionBlockObjectResponse = BlockObjectResponse;
+export type NotionListCommentsResponse = ListCommentsResponse;
+export type NotionCommentObjectResponse = CommentObjectResponse;
+export type NotionRichTextItemResponse = RichTextItemResponse;
+export type NotionCreateCommentParameters = CreateCommentParameters; // Request only
+
+/* Extract */
+export type NotionDatabaseProperty = NotionDatabaseObjectResponse['properties'];
+export type NotionDatabasePropertyConfigResponse =
+  NotionDatabaseObjectResponse['properties'][string];
+export type NotionSelectPropertyResponse = Extract<
+  NotionDatabasePropertyConfigResponse,
+  { type: 'select' }
+>['select']['options'][number];
+export type NotionSelectColor = NotionSelectPropertyResponse['color'];
+export type NotionRichTextItemRequest = CreateCommentParameters['rich_text'][number]; // Request only
+
+/* Custom */
+export type NotionAPIPosts = NotionAPIPost[];
+
+export type NotionAPIBlogState = {
+  posts: NotionAPIPosts;
+};
+
+export type NotionAPIPost = {
+  id: string;
+  icon: string;
+  title: string;
+  description?: string;
+  category: NotionSelectPropertyResponse;
+  date: string;
+  slug: string;
+  colorCode: string;
+  updatedAt: string;
+  tags: string[];
+  content?: string;
+};
+
+export type NotionAPIPostWithChildren = NotionAPIPost & {
+  children: NotionBlockObjectResponse[];
+};
+export type NotionBlogProperties = {
+  categories: NotionSelectPropertyResponse[];
+  tags: NotionSelectPropertyResponse[];
+};
+export type NotionBlogPropertiesWithCount = {
+  categories: (NotionSelectPropertyResponse & { count: number })[];
+  tags: (NotionSelectPropertyResponse & { count: number })[];
+};
+
+export type Ogp = {
+  url: string;
+  title: string;
+  description: string;
+  faviconUrl: string;
+  imageUrl: string;
+};

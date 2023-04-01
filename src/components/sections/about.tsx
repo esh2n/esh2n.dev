@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Link from 'next/link';
 
 const TwitterIcon = () => <FontAwesomeIcon icon={faTwitter} size="lg" />;
 const GithubIcon = () => <FontAwesomeIcon icon={faGithub} size="lg" />;
@@ -121,16 +122,17 @@ export const InnerProfile = () => {
             </a>
           </div>
           <Spacer />
-          <span className="super-light">he/him, 23 y.o.</span>
+          <span className="super-light">he/him, 25 y.o.</span>
         </div>
       </div>
       <Spacer className="lg" />
-      <span className="super-light">Web・ネイティブアプリエンジニア</span>
+      <span className="super-light">エンジニア</span>
 
       <p className="light"></p>
       <span className="light">好奇心の赴くままに、広く深く学んでいきます。</span>
       <p className="light">
-        Elm Deno Rust Flutter が特に好きでなにか作っては壊してを繰り返しています。
+        Elm Deno Rust Flutter
+        が特に好きでなにか作っては壊してを繰り返しています。（最近はあまり触れていない）
       </p>
     </div>
   );
@@ -140,10 +142,17 @@ export const RightProfile = () => {
   return (
     <div className="inner-profile">
       <span className="light">
-        技術による問題解決に興味があり、ユーザーのニーズに最大限答えるものを大事にしたいという気持ちの反面、自分の好きなものを深めたいという技術者のジレンマを抱えています。
+        興味の幅はかなり広い方で、時間が許すのであれば何でも学びたいと思っていますが、現在はブロックチェーン関連の技術に注力しております。
       </span>
       <p className="light">
-        興味の幅はかなり広い方で、時間が許すのであれば何でも学びたいと思っていますが、現在はWebのフロントエンド、バックエンド、ネイティブアプリケーション開発に注力しております。
+        このサイトはMarkdownで記述したブログと、Notionで記載したブログをMarkdownにパースし記載しています。具体的な方法は
+        <Link
+          as={`/notion/bc2ffa51-ee3d-43d3-9ded-bdee60690198`}
+          href="/notion/bc2ffa51-ee3d-43d3-9ded-bdee60690198"
+        >
+          こちら
+        </Link>
+        に記載しています。
       </p>
     </div>
   );

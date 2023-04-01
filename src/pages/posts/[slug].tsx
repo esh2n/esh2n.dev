@@ -64,7 +64,7 @@ export default function Post({ post, ogImageUrl }: Props) {
               emoji={post.emoji}
             />
             <SideProfile />
-            <PostBody html={post.content} coverImage={post.coverImage} />
+            <PostBody html={post.content} coverImage={ogImageUrl} />
           </StyledGridWrapper>
         </>
       )}

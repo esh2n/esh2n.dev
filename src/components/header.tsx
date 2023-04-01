@@ -96,11 +96,11 @@ function ToggleButtons() {
         setScrap(false);
         router.replace('/posts');
         break;
-      case '/scraps':
+      case '/notion':
         setHome(false);
         setPost(false);
         setScrap(true);
-        router.replace('/scraps');
+        router.replace('/notion');
         break;
     }
     setAlignment(newAlignment);
@@ -161,11 +161,11 @@ function ToggleButtons() {
             </a>
           </Link>
         </ToggleButton>
-        <ToggleButton value="/scraps" aria-label="right aligned" selected={isScrap}>
-          <Link href="/scraps">
+        <ToggleButton value="/notion" aria-label="right aligned" selected={isScrap}>
+          <Link href="/notion">
             <a>
               <FeedIcon fontSize="small" />
-              {renderText('/scraps')}
+              {renderText('/notion')}
             </a>
           </Link>
         </ToggleButton>

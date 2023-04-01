@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import Chip from '@mui/material/Chip';
 import styled from '@emotion/styled';
 import { useState } from 'react';
+import { MarkDownPost, NotionAPIPost } from '../../types/index';
 
 interface Props {
   title: string;
