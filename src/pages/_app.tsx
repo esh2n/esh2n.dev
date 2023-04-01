@@ -4,6 +4,7 @@ import 'katex/dist/katex.css';
 import { AppProps } from 'next/app';
 import Layout from '@components/layout';
 import { RecoilRoot } from 'recoil';
+import React from 'react';
 
 function App({ Component, pageProps }: AppProps): JSX.Element {
   return (
