@@ -105,6 +105,6 @@ export async function getStaticPaths() {
 
   return {
     paths: posts.map((post) => `/posts/${post.slug}`),
-    fallback: false,
+    fallback: 'blocking', // HTMLを生成しない
   };
 }

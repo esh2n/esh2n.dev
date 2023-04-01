@@ -80,7 +80,7 @@ export async function getStaticPaths() {
 
   const posts = postsArray.flat() as NotionPageObjectResponse[];
   const paths = posts.map((post) => {
-    return { params: { slug: toNotionAPIPost(post).slug } };
+    return { params: { slug: toNotionAPIPost(post).id } };
   });
 
   return {
